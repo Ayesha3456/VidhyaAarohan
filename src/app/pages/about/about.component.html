@@ -1,9 +1,9 @@
 <!-- ===== HERO ===== -->
 <section class="page-hero">
-  <div class="container">
+  <div class="container text-center">
     <span class="section-label">About</span>
     <h1 class="section-title mt-1">About AMR Digital Academy</h1>
-    <div class="amr-divider"></div>
+    <div class="amr-divider mx-auto"></div>
   </div>
 </section>
 
@@ -51,6 +51,74 @@
         </p>
 
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== HIGHLIGHTS ===== -->
+<section class="page-section-alt">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Qualifications</span>
+      <h2 class="section-title">Background & Expertise</h2>
+    </div>
+
+    <div class="row g-4">
+      @for (h of highlights; track h.title) {
+        <div class="col-12 col-sm-6">
+          <div class="amr-card">
+            <div class="d-flex gap-4">
+              <div class="amr-card-icon {{ h.iconClass }}">
+                <i class="bi {{ h.icon }}"></i>
+              </div>
+              <div>
+                <h5 class="fw-700 mb-2">{{ h.title }}</h5>
+                <p class="text-muted mb-0 small">{{ h.desc }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== VALUES ===== -->
+<section class="page-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-12 col-md-6">
+        <span class="section-label">Values</span>
+        <h2 class="section-title mt-1">Teaching Approach</h2>
+        <div class="amr-divider"></div>
+
+        <ul class="values-list">
+          @for (v of values; track v) {
+            <li>
+              <i class="bi bi-check-circle-fill"></i>
+              <span>{{ v }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="about-cta-box">
+          <h4 class="fw-700 mb-3">Want to know more?</h4>
+
+          <p class="text-muted mb-4">
+            Book a free demo class and understand the teaching approach before enrolling.
+          </p>
+
+          <a routerLink="/contact" class="btn-primary-amr d-inline-flex">
+            <i class="bi bi-calendar-check"></i> Book Free Demo
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
