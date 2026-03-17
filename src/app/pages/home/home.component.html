@@ -5,7 +5,7 @@
 
       <!-- LEFT -->
       <div class="col-12 col-lg-6">
-        <span class="section-label">CBSE Maths Tuition · Classes 1–10 · Online</span>
+        <span class="section-label">CBSE Maths Tuition · Classes 1–12 · Online</span>
 
         <h1 class="hero-title">
           Improve Math Marks & Confidence<br>
@@ -30,7 +30,7 @@
             <span class="stat-label">Students per Batch</span>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">1–10</span>
+            <span class="stat-number">1–12</span>
             <span class="stat-label">Classes Covered</span>
           </div>
           <div class="hero-stat">
@@ -42,7 +42,7 @@
         <!-- CTA -->
         <div class="mt-3">
           <a routerLink="/contact" class="btn-primary-amr">
-            <i class="bi bi-calendar-check"></i> Book Free Demo Class
+            📅 Book Free Demo Class
           </a>
         </div>
 
@@ -91,7 +91,6 @@
   </div>
 </section>
 
-
 <!-- ===== CLASS SEGMENTATION ===== -->
 <section class="container mt-5">
   <div class="row g-4 text-center">
@@ -112,14 +111,13 @@
 
     <div class="col-md-4">
       <div class="card p-4">
-        <h5>Classes 9–10</h5>
+        <h5>Classes 9–12</h5>
         <p>Board exam preparation and scoring focus</p>
       </div>
     </div>
 
   </div>
 </section>
-
 
 <!-- ===== PRICING ===== -->
 <section class="page-section-alt">
@@ -145,7 +143,7 @@
 
       <div class="col-md-4">
         <div class="amr-card">
-          <h5>Classes 9–10</h5>
+          <h5>Classes 9–12</h5>
           <h3>₹2500 / month</h3>
         </div>
       </div>
@@ -157,7 +155,6 @@
     </p>
   </div>
 </section>
-
 
 <!-- ===== TRUST SECTION ===== -->
 <section class="page-section">
@@ -192,7 +189,6 @@
   </div>
 </section>
 
-
 <!-- ===== HOW IT WORKS ===== -->
 <section class="page-section-alt">
   <div class="container">
@@ -202,25 +198,22 @@
     </div>
 
     <div class="row g-4">
-      @for (step of steps; track step.num) {
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="step-card">
-            <span class="step-number">{{ step.num }}</span>
-            <h5 class="fw-700 mt-3">{{ step.title }}</h5>
-            <p class="text-muted small">{{ step.desc }}</p>
-          </div>
+      <div *ngFor="let step of steps; let i = index" class="col-12 col-sm-6 col-lg-3">
+        <div class="step-card">
+          <span class="step-number">{{ step.num }}</span>
+          <h5 class="fw-700 mt-3">{{ step.title }}</h5>
+          <p class="text-muted small">{{ step.desc }}</p>
         </div>
-      }
+      </div>
     </div>
 
     <div class="text-center mt-5">
       <a routerLink="/contact" class="btn-primary-amr">
-        Book Free Demo Class
+        📅 Book Free Demo Class
       </a>
     </div>
   </div>
 </section>
-
 
 <!-- ===== SECONDARY BUSINESS ===== -->
 <section class="page-section">

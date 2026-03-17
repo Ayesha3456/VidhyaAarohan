@@ -53,15 +53,21 @@
   padding: 20px;
 }
 
-/* iframe */
-iframe {
-  border-radius: 10px;
-  border: none;
+/* Buttons */
+.btn-primary-amr {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  iframe {
-    height: 900px;
+  .contact-form-body {
+    padding: 15px;
   }
 }

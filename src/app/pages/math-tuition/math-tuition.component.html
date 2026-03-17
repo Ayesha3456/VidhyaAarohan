@@ -1,9 +1,9 @@
 <!-- Page Hero -->
 <section class="page-hero">
-  <div class="container">
+  <div class="container text-center">
     <span class="section-label">CBSE Online Tuition</span>
     <h1 class="section-title mt-1">Online Math Tuition<br>for Classes 1–8</h1>
-    <div class="amr-divider"></div>
+    <div class="amr-divider mx-auto"></div>
     <p class="section-subtitle">
       Structured curriculum, live interaction, and concept-first teaching for every CBSE class.
     </p>
@@ -18,17 +18,15 @@
       <h2 class="section-title">How Our Classes Work</h2>
     </div>
     <div class="row g-4">
-      @for (f of format; track f.label) {
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="amr-card text-center">
-            <div class="amr-card-icon {{ f.iconClass }} mx-auto mb-3">
-              <i class="bi {{ f.icon }}"></i>
-            </div>
-            <h6 class="fw-700 mb-2">{{ f.label }}</h6>
-            <p class="text-muted small mb-0">{{ f.detail }}</p>
+      <div *ngFor="let f of format" class="col-12 col-sm-6 col-lg-3">
+        <div class="amr-card text-center">
+          <div class="amr-card-icon mx-auto mb-3" [ngClass]="f.iconClass">
+            <i class="bi" [ngClass]="f.icon"></i>
           </div>
+          <h6 class="fw-700 mb-2">{{ f.label }}</h6>
+          <p class="text-muted small mb-0">{{ f.detail }}</p>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>
@@ -41,14 +39,12 @@
       <h2 class="section-title">Key Topics Taught Across Classes</h2>
     </div>
     <div class="row justify-content-center g-3">
-      @for (t of topics; track t.label) {
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="topic-chip">
-            <i class="bi {{ t.icon }} mb-2 d-block fs-4" style="color:var(--primary)"></i>
-            <span>{{ t.label }}</span>
-          </div>
+      <div *ngFor="let t of topics" class="col-6 col-md-4 col-lg-2">
+        <div class="topic-chip">
+          <i class="bi mb-2 d-block fs-4" [ngClass]="t.icon" style="color:var(--primary)"></i>
+          <span>{{ t.label }}</span>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>
@@ -59,21 +55,21 @@
     <div class="text-center mb-5">
       <span class="section-label">Class-wise Syllabus</span>
       <h2 class="section-title">Topics by Class</h2>
-      <p class="section-subtitle mx-auto mt-2">Each class follows the CBSE curriculum with added concept-clarity exercises.</p>
+      <p class="section-subtitle mx-auto mt-2">
+        Each class follows the CBSE curriculum with added concept-clarity exercises.
+      </p>
     </div>
     <div class="row g-4">
-      @for (cls of classes; track cls.num) {
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="class-card">
-            <div class="class-badge">Class {{ cls.num }}</div>
-            <ul class="class-topics">
-              @for (topic of cls.topics; track topic) {
-                <li><i class="bi bi-check2 me-2 text-primary-amr"></i>{{ topic }}</li>
-              }
-            </ul>
-          </div>
+      <div *ngFor="let cls of classes" class="col-12 col-sm-6 col-lg-3">
+        <div class="class-card">
+          <div class="class-badge">Class {{ cls.num }}</div>
+          <ul class="class-topics">
+            <li *ngFor="let topic of cls.topics">
+              <i class="bi bi-check2 me-2 text-primary-amr"></i>{{ topic }}
+            </li>
+          </ul>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>

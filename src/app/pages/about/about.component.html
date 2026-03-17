@@ -7,7 +7,6 @@
   </div>
 </section>
 
-
 <!-- ===== FOUNDER ===== -->
 <section class="page-section">
   <div class="container">
@@ -23,7 +22,7 @@
         <p class="text-muted small">MSc Applied Mathematics · Math Tutor</p>
 
         <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
-          <span class="badge-amr">Classes 1–10</span>
+          <span class="badge-amr">Classes 1–12</span>
           <span class="badge-amr badge-teal">Small Batches</span>
         </div>
       </div>
@@ -35,7 +34,7 @@
         <div class="amr-divider"></div>
 
         <p class="text-muted">
-          I started AMR Digital Academy with a simple goal — to make math easier and more understandable for students from Classes 1 to 10.
+          I started AMR Digital Academy with a simple goal — to make math easier and more understandable for students from Classes 1 to 12.
         </p>
 
         <p class="text-muted">
@@ -49,12 +48,10 @@
         <p class="text-muted mb-0">
           I also work on web development projects for businesses, but my primary focus is helping students improve in mathematics through structured teaching.
         </p>
-
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ===== HIGHLIGHTS ===== -->
 <section class="page-section-alt">
@@ -65,25 +62,22 @@
     </div>
 
     <div class="row g-4">
-      @for (h of highlights; track h.title) {
-        <div class="col-12 col-sm-6">
-          <div class="amr-card">
-            <div class="d-flex gap-4">
-              <div class="amr-card-icon {{ h.iconClass }}">
-                <i class="bi {{ h.icon }}"></i>
-              </div>
-              <div>
-                <h5 class="fw-700 mb-2">{{ h.title }}</h5>
-                <p class="text-muted mb-0 small">{{ h.desc }}</p>
-              </div>
+      <div *ngFor="let h of highlights" class="col-12 col-sm-6">
+        <div class="amr-card">
+          <div class="d-flex gap-4">
+            <div class="amr-card-icon" [ngClass]="h.iconClass">
+              <i class="bi" [ngClass]="h.icon"></i>
+            </div>
+            <div>
+              <h5 class="fw-700 mb-2">{{ h.title }}</h5>
+              <p class="text-muted mb-0 small">{{ h.desc }}</p>
             </div>
           </div>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>
-
 
 <!-- ===== VALUES ===== -->
 <section class="page-section">
@@ -96,12 +90,10 @@
         <div class="amr-divider"></div>
 
         <ul class="values-list">
-          @for (v of values; track v) {
-            <li>
-              <i class="bi bi-check-circle-fill"></i>
-              <span>{{ v }}</span>
-            </li>
-          }
+          <li *ngFor="let v of values">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>{{ v }}</span>
+          </li>
         </ul>
       </div>
 

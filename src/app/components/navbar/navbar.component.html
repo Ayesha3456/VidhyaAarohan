@@ -6,21 +6,18 @@
       <img src="assets/logo.jpg" alt="AMR Digital Academy" class="brand-icon" />
       <div>
         <span class="brand-name">AMR Digital</span>
-        <span class="brand-sub d-block">Academy</span>
+        <span class="brand-sub d-block">Academy | MSc Tutor, CBSE Maths</span>
       </div>
     </a>
 
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button"
-      data-bs-toggle="collapse" data-bs-target="#mainNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
       <span class="toggler-icon">☰</span>
     </button>
 
     <!-- Nav Links -->
     <div class="collapse navbar-collapse justify-content-between" id="mainNav">
-
       <ul class="navbar-nav align-items-lg-center gap-lg-1">
-
         <li class="nav-item">
           <a class="nav-link"
              routerLink="/"
@@ -34,11 +31,11 @@
 
         <li class="nav-item">
           <a class="nav-link"
-             routerLink="/tuition"
+             routerLink="/math-tuition"
              routerLinkActive="active"
              data-bs-toggle="collapse"
              data-bs-target=".navbar-collapse.show">
-            Tuition
+            Math Tuition (1–12)
           </a>
         </li>
 
@@ -48,7 +45,7 @@
              routerLinkActive="active"
              data-bs-toggle="collapse"
              data-bs-target=".navbar-collapse.show">
-            Web Development
+            Web Dev Services
           </a>
         </li>
 
@@ -71,19 +68,19 @@
             Contact
           </a>
         </li>
-
       </ul>
 
-      <!-- CTA -->
-      <div class="navbar-actions d-flex align-items-center">
-        <a class="nav-link nav-cta"
-           routerLink="/contact"
-           data-bs-toggle="collapse"
-           data-bs-target=".navbar-collapse.show">
-          📅 Book Demo
+      <!-- CTA for Desktop -->
+      <div class="navbar-actions d-flex align-items-center ms-3">
+        <a class="btn btn-warning nav-cta" href="https://wa.me/8500764713" target="_blank">
+          📱 WhatsApp Demo
         </a>
       </div>
-
     </div>
   </div>
 </nav>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/8500764713" class="whatsapp-float" target="_blank">
+  📱 Chat on WhatsApp
+</a>

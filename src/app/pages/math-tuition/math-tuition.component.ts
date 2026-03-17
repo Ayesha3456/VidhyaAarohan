@@ -1,14 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-math-tuition',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './math-tuition.component.html',
   styleUrls: ['./math-tuition.component.css']
 })
 export class MathTuitionComponent {
+
   classes = [
     { num: '1', topics: ['Numbers 1–100', 'Basic Addition', 'Basic Subtraction', 'Shapes', 'Patterns'] },
     { num: '2', topics: ['Numbers up to 1000', 'Addition & Subtraction', 'Multiplication Intro', 'Measurement', 'Data Handling'] },

@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
@@ -20,7 +21,7 @@ export class AboutComponent {
     {
       icon: 'bi-calculator-fill',
       iconClass: 'icon-indigo',
-      title: 'Math Tutor (Classes 1–10)',
+      title: 'Math Tutor (Classes 1–12)',
       desc: 'Focused on concept clarity and improvement'
     },
     {

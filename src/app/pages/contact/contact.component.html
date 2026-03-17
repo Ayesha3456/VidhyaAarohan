@@ -1,22 +1,18 @@
+<!-- HERO -->
 <section class="page-hero">
   <div class="container text-center">
     <span class="section-label">Get in Touch</span>
     <h1 class="section-title mt-1">Book a Free Demo Class</h1>
     <div class="amr-divider mx-auto"></div>
-
     <p class="section-subtitle">
       Fill the form below to book a demo class. Limited seats per batch.
     </p>
-
     <!-- Backup Button -->
-    <a href="https://forms.gle/gBgYmbwZRfvia9Y96"
-       target="_blank"
-       class="btn-primary-amr mt-3">
+    <a [href]="formUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-amr mt-3">
       Open Form in New Tab
     </a>
   </div>
 </section>
-
 
 <section class="page-section">
   <div class="container">
@@ -25,9 +21,7 @@
       <!-- INFO -->
       <div class="col-12 col-lg-4">
         <div class="contact-info-box">
-
           <h5 class="fw-bold mb-4">Why Book a Demo?</h5>
-
           <div class="contact-point">✅ Free demo class</div>
           <div class="contact-point">🎥 Live interactive session</div>
           <div class="contact-point">👁️ Understand teaching method</div>
@@ -36,7 +30,6 @@
           <hr class="my-4">
 
           <h6 class="fw-bold mb-3">Class Details</h6>
-
           <div class="class-info-box">
             <div class="class-info-row">
               <span>Classes</span><strong>1–10 (CBSE)</strong>
@@ -51,35 +44,43 @@
               <span>Duration</span><strong>60 mins</strong>
             </div>
           </div>
-
         </div>
       </div>
 
-
-      <!-- GOOGLE FORM EMBED -->
+      <!-- ANGULAR FORM -->
       <div class="col-12 col-lg-8">
         <div class="contact-form-wrapper">
 
           <div class="contact-form-header">
             <h5 class="fw-bold text-white mb-1">Fill the Form</h5>
-            <p class="mb-0 small text-white-50">
-              Takes less than 1 minute
-            </p>
+            <p class="mb-0 small text-white-50">Takes less than 1 minute</p>
           </div>
 
           <div class="contact-form-body">
-
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSeIq6x55dhqtdL-mwfAaWD_CcOYYlfMpx8ik0DEU6TGUZU_SA/viewform?embedded=true"
-              width="100%"
-              height="800"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0">
-              Loading…
-            </iframe>
-
+            <form #demoForm="ngForm" (ngSubmit)="onSubmit(demoForm)">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" ngModel required class="form-control" placeholder="Your Name">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" ngModel required class="form-control" placeholder="you@example.com">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="tel" name="phone" ngModel required class="form-control" placeholder="+91 98765 43210">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Class</label>
+                <select name="class" ngModel required class="form-select">
+                  <option value="" disabled selected>Select Class</option>
+                  <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">Class {{i}}</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary-amr w-100">Book Demo</button>
+            </form>
           </div>
+
         </div>
       </div>
 
