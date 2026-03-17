@@ -10,10 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+
   isScrolled = false;
 
   @HostListener('window:scroll')
   onScroll() {
     this.isScrolled = window.scrollY > 20;
   }
+
 }
