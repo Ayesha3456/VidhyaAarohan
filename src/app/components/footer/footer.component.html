@@ -1,61 +1,60 @@
 <footer class="footer">
+
   <div class="footer-top">
     <div class="container">
       <div class="row g-4 g-lg-5">
 
-        <!-- Brand column -->
+        <!-- Brand -->
         <div class="col-12 col-lg-4">
           <div class="d-flex align-items-center gap-2 mb-3">
-            <div class="footer-brand-icon">
-              <picture>
-                <source srcset="assets/logo.jpg" type="image/svg+xml">
-                <img src="assets/logo.jpg" alt="AMR Digital Academy" class="footer-logo" />
-              </picture>
-            </div>
-            <div>
-              <span class="footer-brand-name">AMR Digital Academy</span>
-            </div>
+            <img src="assets/logo.jpg" alt="AMR Digital Academy" class="footer-logo" />
+            <span class="footer-brand-name">AMR Digital Academy</span>
           </div>
+
           <p class="footer-desc">
-            Empowering students in Classes 1–8 with confident, concept-based math learning through small-batch online sessions.
+            Concept-based online math tuition for Classes 1–8 with small-batch learning and real attention.
           </p>
+
           <div class="footer-contact mt-3">
             <div class="footer-contact-item">
               <i class="bi bi-envelope-fill"></i>
-              <a href="mailto:amrdigitalacademy@gmail.com">amrdigitalacademy&#64;gmail.com</a>
+              <a href="mailto:amrdigitalacademy@gmail.com">amrdigitalacademy@gmail.com</a>
             </div>
+
             <div class="footer-contact-item">
               <i class="bi bi-geo-alt-fill"></i>
-              <span>Online Classes — Available Nationwide</span>
+              <span>Online Classes — Available Across India</span>
             </div>
           </div>
         </div>
 
-        <!-- Quick links -->
+        <!-- Tuition -->
         <div class="col-6 col-md-4 col-lg-2 offset-lg-1">
-          <h6 class="footer-heading">Math Tuition</h6>
+          <h6 class="footer-heading">Tuition</h6>
           <ul class="footer-links">
-            <li><a routerLink="/math-tuition">Classes 1–8</a></li>
-            <li><a routerLink="/teaching-method">Teaching Method</a></li>
-            <li><a routerLink="/progress-reports">Progress Reports</a></li>
-            <li><a routerLink="/worksheets">Worksheets</a></li>
+            <li><a routerLink="/tuition">Classes 1–8</a></li>
+            <li><a routerLink="/contact">Book Demo</a></li>
           </ul>
         </div>
 
+        <!-- Services -->
         <div class="col-6 col-md-4 col-lg-2">
           <h6 class="footer-heading">Services</h6>
           <ul class="footer-links">
             <li><a routerLink="/web-development">Web Development</a></li>
-            <li><a routerLink="/about">About Us</a></li>
+            <li><a routerLink="/about">About</a></li>
             <li><a routerLink="/contact">Contact</a></li>
           </ul>
         </div>
 
         <!-- CTA -->
         <div class="col-12 col-md-4 col-lg-3">
-          <h6 class="footer-heading">Book a Free Demo</h6>
-          <p class="footer-cta-text">Experience our teaching style — no commitment required.</p>
-          <a href="/contact" routerLink="/contact" class="btn-primary-amr" style="font-size:0.88rem; padding: 10px 22px;">
+          <h6 class="footer-heading">Start with a Demo</h6>
+          <p class="footer-cta-text">
+            See how the classes work before you decide.
+          </p>
+
+          <a routerLink="/contact" class="btn-primary-amr">
             <i class="bi bi-calendar-check"></i> Book Free Demo
           </a>
         </div>
@@ -67,13 +66,17 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+
         <p class="mb-0 footer-copy">
-          &copy; {{ currentYear }} AMR Digital Academy. All rights reserved.
+          &copy; {{ currentYear }} AMR Digital Academy
         </p>
+
         <p class="mb-0 footer-copy">
-          Made with <i class="bi bi-heart-fill text-danger"></i> for Math Learners
+          Built for focused learning
         </p>
+
       </div>
     </div>
   </div>
+
 </footer>
