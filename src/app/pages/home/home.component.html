@@ -8,14 +8,20 @@
         <span class="section-label">CBSE Maths Tuition · Classes 1–10 · Online</span>
 
         <h1 class="hero-title">
-          Build Strong Math Skills<br>
+          Improve Math Marks & Confidence<br>
           <span class="hero-highlight">From Basics to Board Exams</span>
         </h1>
 
         <p class="hero-desc">
           Live online math tuition with small batches (5–6 students).
-          Focus on concept clarity, regular practice, and exam preparation.
+          Focused on improving school performance, clearing concepts,
+          and building confidence step-by-step.
         </p>
+
+        <!-- URGENCY -->
+        <div class="alert alert-warning mt-3 fw-600">
+          📢 Only 5–6 students per batch — Limited seats available
+        </div>
 
         <!-- Stats -->
         <div class="hero-stats d-flex flex-wrap gap-3 my-4">
@@ -36,12 +42,13 @@
         <!-- CTA -->
         <div class="mt-3">
           <a routerLink="/contact" class="btn-primary-amr">
-            <i class="bi bi-calendar-check"></i> Book Free Demo
+            <i class="bi bi-calendar-check"></i> Book Free Demo Class
           </a>
         </div>
 
+        <!-- PRICING -->
         <p class="mt-2 text-muted small">
-          Limited seats per batch (5–6 students only)
+          Starting from ₹1500/month (depends on class level)
         </p>
       </div>
 
@@ -85,28 +92,28 @@
 </section>
 
 
-<!-- ===== CLASS SEGMENTATION (IMPORTANT) ===== -->
+<!-- ===== CLASS SEGMENTATION ===== -->
 <section class="container mt-5">
   <div class="row g-4 text-center">
 
     <div class="col-md-4">
       <div class="card p-4">
         <h5>Classes 1–5</h5>
-        <p>Strong basics, simple explanations, fun learning</p>
+        <p>Strong basics and easy learning approach</p>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card p-4">
         <h5>Classes 6–8</h5>
-        <p>Foundation building and problem-solving skills</p>
+        <p>Concept building and problem solving</p>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card p-4">
         <h5>Classes 9–10</h5>
-        <p>Board exam preparation and scoring strategy</p>
+        <p>Board exam preparation and scoring focus</p>
       </div>
     </div>
 
@@ -114,26 +121,73 @@
 </section>
 
 
-<!-- ===== BENEFITS ===== -->
-<section class="page-section">
-  <div class="container">
-    <div class="text-center mb-5">
-      <span class="section-label">Why Choose This Tuition</span>
-      <h2 class="section-title">Simple & Structured Math Learning</h2>
+<!-- ===== PRICING ===== -->
+<section class="page-section-alt">
+  <div class="container text-center">
+    <span class="section-label">Fees</span>
+    <h2 class="section-title">Simple Monthly Pricing</h2>
+
+    <div class="row g-4 mt-4">
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h5>Classes 1–5</h5>
+          <h3>₹1500 / month</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h5>Classes 6–8</h5>
+          <h3>₹2000 / month</h3>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h5>Classes 9–10</h5>
+          <h3>₹2500 / month</h3>
+        </div>
+      </div>
+
     </div>
 
-    <div class="row g-4">
-      @for (b of benefits; track b.title) {
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="amr-card">
-            <div class="amr-card-icon {{ b.iconClass }}">
-              <i class="bi {{ b.icon }}"></i>
-            </div>
-            <h5 class="fw-700 mb-2">{{ b.title }}</h5>
-            <p class="mb-0 text-muted small">{{ b.desc }}</p>
-          </div>
+    <p class="text-muted small mt-3">
+      3 sessions per week · Small batches
+    </p>
+  </div>
+</section>
+
+
+<!-- ===== TRUST SECTION ===== -->
+<section class="page-section">
+  <div class="container text-center">
+    <span class="section-label">What Parents Can Expect</span>
+    <h2 class="section-title">Structured Learning Approach</h2>
+
+    <div class="row g-4 mt-4">
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h6>Worksheets After Every Topic</h6>
+          <p class="small text-muted">Practice sheets for better understanding</p>
         </div>
-      }
+      </div>
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h6>Regular Tests</h6>
+          <p class="small text-muted">Track improvement</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="amr-card">
+          <h6>Progress Reports</h6>
+          <p class="small text-muted">Clear performance updates</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -152,8 +206,8 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="step-card">
             <span class="step-number">{{ step.num }}</span>
-            <h5 class="fw-700 mb-2 mt-3">{{ step.title }}</h5>
-            <p class="mb-0 text-muted small">{{ step.desc }}</p>
+            <h5 class="fw-700 mt-3">{{ step.title }}</h5>
+            <p class="text-muted small">{{ step.desc }}</p>
           </div>
         </div>
       }
@@ -164,15 +218,11 @@
         Book Free Demo Class
       </a>
     </div>
-
-    <p class="text-center text-muted small mt-3">
-      Demo class helps you evaluate before joining
-    </p>
   </div>
 </section>
 
 
-<!-- ===== WEB DEV (SECONDARY) ===== -->
+<!-- ===== SECONDARY BUSINESS ===== -->
 <section class="page-section">
   <div class="container">
     <div class="web-dev-banner">
@@ -180,15 +230,15 @@
 
         <div class="col-12 col-md-8">
           <span class="section-label">Also Available</span>
-          <h3 class="fw-700 mb-2">Web Development Services</h3>
+          <h3 class="fw-700 mb-2">Need a Website?</h3>
           <p class="text-muted mb-0">
-            We also build responsive business websites and web applications.
+            I also build affordable websites for small businesses and educators.
           </p>
         </div>
 
         <div class="col-12 col-md-4 text-md-end">
           <a routerLink="/web-development" class="btn-teal-amr">
-            Explore Services
+            Explore
           </a>
         </div>
 
