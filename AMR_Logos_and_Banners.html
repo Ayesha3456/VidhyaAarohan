@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMR Digital Academy — Logo & Banners</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1E293B; font-family: 'Segoe UI', sans-serif; padding: 40px 20px; }
+  .page-title {
+    text-align: center; color: #94a3b8; font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 40px;
+  }
+  .asset-block { margin-bottom: 48px; }
+  .asset-label {
+    color: #64748b; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px; padding-left: 4px;
+  }
+  .asset-name {
+    color: #e2e8f0; font-size: 15px; font-weight: 600; margin-bottom: 6px; padding-left: 4px;
+  }
+  .asset-hint {
+    color: #475569; font-size: 11px; margin-bottom: 12px; padding-left: 4px;
+  }
+  .canvas-wrap {
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    cursor: pointer; transition: transform 0.2s;
+    display: inline-block; width: 100%;
+  }
+  .canvas-wrap:hover { transform: scale(1.01); }
+  canvas { display: block; width: 100%; }
+  .save-btn {
+    display: inline-block; margin-top: 10px;
+    background: #2563EB; color: white; border: none;
+    border-radius: 50px; padding: 10px 24px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .save-btn:hover { background: #1D4ED8; }
+  .divider { border: none; border-top: 1px solid #334155; margin: 0 0 48px; }
+</style>
+</head>
+<body>
+<p class="page-title">AMR Digital Academy — Logo &amp; Banners · Right-click any image → Save as JPG/PNG</p>
+
+<!-- ── LOGO ── -->
+<div class="asset-block">
+  <p class="asset-label">Asset 01</p>
+  <p class="asset-name">Logo — Square / Profile Photo</p>
+  <p class="asset-hint">Best for: Google Business profile photo, WhatsApp, website favicon area</p>
+  <div class="canvas-wrap">
+    <canvas id="logo" width="800" height="800"></canvas>
+  </div>
+  <br>
+  <a id="dl-logo" class="save-btn" download="AMR_Digital_Academy_Logo.png">⬇ Download Logo (PNG)</a>
+</div>
+
+<hr class="divider">
+
+<!-- ── GOOGLE FORMS BANNER ── -->
+<div class="asset-block">
+  <p class="asset-label">Asset 02</p>
+  <p class="asset-name">Google Forms Banner</p>
+  <p class="asset-hint">Best for: Google Forms header image · Recommended size: 1600×400px</p>
+  <div class="canvas-wrap">
+    <canvas id="formsBanner" width="1600" height="400"></canvas>
+  </div>
+  <br>
+  <a id="dl-forms" class="save-btn" download="AMR_Digital_Academy_Forms_Banner.png">⬇ Download Forms Banner (PNG)</a>
+</div>
+
+<hr class="divider">
+
+<!-- ── GOOGLE BUSINESS BANNER ── -->
+<div class="asset-block">
+  <p class="asset-label">Asset 03</p>
+  <p class="asset-name">Google Business Cover Photo</p>
+  <p class="asset-hint">Best for: Google Business Profile cover photo · Recommended size: 1332×750px</p>
+  <div class="canvas-wrap">
+    <canvas id="bizBanner" width="1332" height="750"></canvas>
+  </div>
+  <br>
+  <a id="dl-biz" class="save-btn" download="AMR_Digital_Academy_Business_Banner.png">⬇ Download Business Banner (PNG)</a>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// LOGO (800×800)
+// ─────────────────────────────────────────────
+(function(){
+  const c = document.getElementById('logo');
+  const ctx = c.getContext('2d');
+  const W = 800, H = 800;
+
+  // Background
+  ctx.fillStyle = '#F0F7FF';
+  roundRect(ctx, 0, 0, W, H, 0);
+
+  // Icon card
+  const iconGrad = ctx.createLinearGradient(60, 60, 260, 460);
+  iconGrad.addColorStop(0, '#1D4ED8');
+  iconGrad.addColorStop(1, '#0D9488');
+  roundRect(ctx, 60, 60, 220, 400, 48, iconGrad);
+
+  // Circle behind AMR
+  ctx.beginPath();
+  ctx.arc(170, 220, 72, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.14)';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(170, 220, 50, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.10)';
+  ctx.fill();
+
+  // AMR text in icon
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 58px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('AMR', 170, 238);
+
+  // Divider line in icon
+  ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(90, 316); ctx.lineTo(250, 316); ctx.stroke();
+
+  // Math squares
+  const sq = [{x:98,a:0.35},{x:155,a:0.55},{x:212,a:0.35}];
+  sq.forEach(s => {
+    ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+    roundRect(ctx, s.x, 332, 30, 30, 6, `rgba(255,255,255,${s.a})`);
+  });
+  ctx.fillStyle = 'rgba(255,255,255,0.65)';
+  ctx.font = '14px Segoe UI, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('1+1', 113, 353);
+  ctx.fillText('π', 170, 353);
+  ctx.fillText('∑', 227, 353);
+
+  // Right side — AMR big text
+  const tg = ctx.createLinearGradient(310, 0, 720, 0);
+  tg.addColorStop(0, '#2563EB');
+  tg.addColorStop(1, '#0D9488');
+  ctx.fillStyle = tg;
+  ctx.font = 'bold 100px Georgia, serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('AMR', 310, 220);
+
+  ctx.fillStyle = '#1E293B';
+  ctx.font = 'bold 58px Georgia, serif';
+  ctx.fillText('Digital Academy', 310, 296);
+
+  // Gradient bar
+  const bar = ctx.createLinearGradient(310, 0, 720, 0);
+  bar.addColorStop(0, '#2563EB');
+  bar.addColorStop(1, '#0D9488');
+  ctx.fillStyle = bar;
+  roundRect(ctx, 310, 318, 420, 5, 3, bar);
+
+  // Bullet points
+  ctx.fillStyle = '#2563EB';
+  roundRect(ctx, 310, 345, 16, 16, 3, '#2563EB');
+  ctx.fillStyle = '#475569';
+  ctx.font = '26px Segoe UI, sans-serif';
+  ctx.fillText('Online Math Tuition · CBSE Classes 1–8', 338, 361);
+
+  ctx.fillStyle = '#0D9488';
+  roundRect(ctx, 310, 378, 16, 16, 3, '#0D9488');
+  ctx.fillStyle = '#475569';
+  ctx.fillText('Web Development Services', 338, 394);
+
+  // Divider
+  ctx.strokeStyle = '#E2E8F0';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(310, 424); ctx.lineTo(720, 424); ctx.stroke();
+
+  // Slogan
+  ctx.fillStyle = '#0D9488';
+  ctx.font = 'italic 24px Georgia, serif';
+  ctx.fillText('"Learn with clarity. Grow with confidence."', 310, 470);
+
+  // Download
+  setDownload('dl-logo', c, 'AMR_Digital_Academy_Logo.png');
+})();
+
+// ─────────────────────────────────────────────
+// GOOGLE FORMS BANNER (1600×400)
+// ─────────────────────────────────────────────
+(function(){
+  const c = document.getElementById('formsBanner');
+  const ctx = c.getContext('2d');
+  const W = 1600, H = 400;
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#1E3A8A');
+  bg.addColorStop(0.55, '#1D4ED8');
+  bg.addColorStop(1, '#0D9488');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Decorative circles
+  circle(ctx, 1400, -60, 260, 'rgba(255,255,255,0.06)');
+  circle(ctx, 1500, 400, 180, 'rgba(13,148,136,0.18)');
+  circle(ctx, 60, 380, 160, 'rgba(255,255,255,0.04)');
+  circle(ctx, 380, -40, 120, 'rgba(255,255,255,0.04)');
+
+  // Icon card
+  ctx.fillStyle = 'rgba(255,255,255,0.13)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+  ctx.lineWidth = 3;
+  roundRectStroke(ctx, 80, 70, 210, 260, 44);
+
+  circle(ctx, 185, 174, 56, 'rgba(255,255,255,0.14)');
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 52px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('AMR', 185, 192);
+
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = '20px Segoe UI';
+  ctx.fillText('1+1  π  ∑', 185, 280);
+
+  // Academy name
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 76px Georgia, serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('AMR Digital Academy', 320, 168);
+
+  // Underline
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  roundRect(ctx, 320, 182, 100, 5, 2, 'rgba(255,255,255,0.4)');
+
+  // Services
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.font = '30px Segoe UI, sans-serif';
+  ctx.fillText('Online Math Tuition · CBSE Classes 1–8', 320, 232);
+  ctx.fillText('Web Development Services', 320, 272);
+
+  // Divider
+  ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(320, 298); ctx.lineTo(900, 298); ctx.stroke();
+
+  // Slogan
+  ctx.fillStyle = 'rgba(255,255,255,0.75)';
+  ctx.font = 'italic 28px Georgia, serif';
+  ctx.fillText('"Learn with clarity. Grow with confidence."', 320, 348);
+
+  // Free demo pill
+  ctx.fillStyle = 'rgba(255,255,255,0.14)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.38)';
+  ctx.lineWidth = 2.5;
+  roundRectStroke(ctx, 1310, 120, 220, 72, 36);
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 24px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Book Free Demo', 1420, 163);
+
+  setDownload('dl-forms', c, 'AMR_Digital_Academy_Forms_Banner.png');
+})();
+
+// ─────────────────────────────────────────────
+// GOOGLE BUSINESS BANNER (1332×750)
+// ─────────────────────────────────────────────
+(function(){
+  const c = document.getElementById('bizBanner');
+  const ctx = c.getContext('2d');
+  const W = 1332, H = 750;
+
+  // Light bg
+  ctx.fillStyle = '#F8FAFF';
+  ctx.fillRect(0, 0, W, H);
+
+  // Top band
+  const topBg = ctx.createLinearGradient(0, 0, W, 0);
+  topBg.addColorStop(0, '#1E3A8A');
+  topBg.addColorStop(0.5, '#2563EB');
+  topBg.addColorStop(1, '#0D9488');
+  ctx.fillStyle = topBg;
+  ctx.fillRect(0, 0, W, 220);
+
+  // Decorative circles in top band
+  circle(ctx, 1150, 40, 200, 'rgba(255,255,255,0.07)');
+  circle(ctx, 1240, 200, 120, 'rgba(13,148,136,0.2)');
+  circle(ctx, 120, 180, 140, 'rgba(255,255,255,0.05)');
+
+  // Icon in top band
+  ctx.fillStyle = 'rgba(255,255,255,0.18)';
+  ctx.strokeStyle = 'rgba(255,255,255,0.32)';
+  ctx.lineWidth = 2.5;
+  roundRectStroke(ctx, 60, 36, 140, 140, 32);
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 48px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('AMR', 130, 120);
+
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 64px Georgia, serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('AMR Digital Academy', 230, 118);
+  ctx.fillStyle = 'rgba(255,255,255,0.82)';
+  ctx.font = '28px Segoe UI';
+  ctx.fillText('Online Math Tuition · CBSE Classes 1–8  ·  Web Development Services', 232, 164);
+
+  // Stat cards
+  const cards = [
+    { x: 60,   label: '5–6',      sub: 'Students per Batch', note: 'Personal attention',   blue: true },
+    { x: 358,  label: '60 min',   sub: 'Live Sessions',      note: '2–3 times per week',   blue: false },
+    { x: 656,  label: 'FREE',     sub: 'Demo Class',         note: 'No commitment',        blue: true },
+    { x: 954,  label: 'Contact',  sub: 'amrdigitalacademy00@gmail.com', note: '',           blue: false, email: true },
+  ];
+
+  cards.forEach(card => {
+    const cardH = 240;
+    const cardW = 278;
+    const cy = 258;
+
+    if (card.email) {
+      const eg = ctx.createLinearGradient(card.x, cy, card.x + cardW, cy + cardH);
+      eg.addColorStop(0, '#2563EB');
+      eg.addColorStop(1, '#0D9488');
+      roundRect(ctx, card.x, cy, cardW, cardH, 20, eg);
+      ctx.fillStyle = 'rgba(255,255,255,0.82)';
+      ctx.font = '22px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('Contact us', card.x + cardW/2, cy + 70);
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 22px Segoe UI';
+      ctx.fillText('amrdigitalacademy00', card.x + cardW/2, cy + 112);
+      ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(card.x+30, cy+128); ctx.lineTo(card.x+cardW-30, cy+128); ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,0.82)';
+      ctx.font = '20px Segoe UI';
+      ctx.fillText('@gmail.com', card.x + cardW/2, cy + 158);
+    } else {
+      const bg1 = card.blue ? '#EFF6FF' : '#F0FDFA';
+      const bg2 = card.blue ? '#DBEAFE' : '#CCFBF1';
+      const cg = ctx.createLinearGradient(card.x, cy, card.x, cy + cardH);
+      cg.addColorStop(0, bg1); cg.addColorStop(1, bg2);
+      roundRect(ctx, card.x, cy, cardW, cardH, 20, cg);
+      ctx.strokeStyle = card.blue ? '#BFDBFE' : '#99F6E4';
+      ctx.lineWidth = 2;
+      roundRectStroke(ctx, card.x, cy, cardW, cardH, 20);
+
+      const col = card.blue ? '#1D4ED8' : '#0D9488';
+      ctx.fillStyle = col;
+      ctx.font = 'bold 58px Georgia, serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(card.label, card.x + cardW/2, cy + 90);
+      ctx.font = 'bold 24px Segoe UI';
+      ctx.fillText(card.sub, card.x + cardW/2, cy + 136);
+      ctx.strokeStyle = card.blue ? '#BFDBFE' : '#99F6E4';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(card.x+50, cy+154); ctx.lineTo(card.x+cardW-50, cy+154); ctx.stroke();
+      ctx.font = '20px Segoe UI';
+      ctx.fillText(card.note, card.x + cardW/2, cy + 188);
+    }
+  });
+
+  // Bottom divider
+  ctx.strokeStyle = '#E2E8F0';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(60, 524); ctx.lineTo(W-60, 524); ctx.stroke();
+
+  // Slogan
+  ctx.fillStyle = '#0D9488';
+  ctx.font = 'italic 30px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('"Learn with clarity. Grow with confidence."', W/2, 580);
+
+  // Color accent bars
+  const barColors = ['#2563EB', '#3B82F6', '#0D9488'];
+  barColors.forEach((col, i) => {
+    roundRect(ctx, 60 + i * 52, 610, 36, 8, 4, col);
+  });
+
+  setDownload('dl-biz', c, 'AMR_Digital_Academy_Business_Banner.png');
+})();
+
+// ─────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────
+function roundRect(ctx, x, y, w, h, r, fill) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+  if(fill) { ctx.fillStyle = fill; ctx.fill(); }
+}
+function roundRectStroke(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+  ctx.fill(); ctx.stroke();
+}
+function circle(ctx, x, y, r, fill) {
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.fillStyle = fill; ctx.fill();
+}
+function setDownload(btnId, canvas, filename) {
+  setTimeout(() => {
+    const a = document.getElementById(btnId);
+    a.href = canvas.toDataURL('image/png');
+    a.download = filename;
+  }, 300);
+}
+</script>
+</body>
+</html>

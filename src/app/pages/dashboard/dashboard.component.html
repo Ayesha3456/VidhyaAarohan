@@ -1,0 +1,252 @@
+<!-- Dashboard wrapper -->
+<div class="dashboard">
+
+  <!-- Sidebar (no print) -->
+  <aside class="sidebar no-print">
+    <div class="sidebar-brand">
+      <div class="sidebar-icon">🧮</div>
+      <div>
+        <div class="sidebar-name">AMR Digital</div>
+        <div class="sidebar-sub">Teacher Dashboard</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="sidebar-btn" [class.active]="activeTab === 'reports'" (click)="activeTab = 'reports'">
+        📊 Progress Reports
+      </button>
+      <button class="sidebar-btn" [class.active]="activeTab === 'worksheets'" (click)="activeTab = 'worksheets'">
+        📝 Worksheets
+      </button>
+    </nav>
+
+    <div class="sidebar-students" *ngIf="activeTab === 'reports'">
+      <div class="sidebar-section-title">Students</div>
+      @for (s of data.students; track s.id) {
+        <button class="student-btn" [class.active]="selectedReport.id === s.id" (click)="selectStudent(s)">
+          <span class="student-avatar">{{ s.studentName[0] }}</span>
+          <span class="student-info-side">
+            <span class="s-name">{{ s.studentName }}</span>
+            <span class="s-class">{{ s.studentClass }} · {{ s.batch }}</span>
+          </span>
+        </button>
+      }
+    </div>
+
+    <div class="sidebar-students" *ngIf="activeTab === 'worksheets'">
+      <div class="sidebar-section-title">Worksheets</div>
+      @for (ws of data.worksheets; track ws.id) {
+        <button class="student-btn" [class.active]="selectedWorksheet.id === ws.id" (click)="selectWorksheet(ws)">
+          <span class="student-avatar" style="background:linear-gradient(135deg,#0D9488,#0F766E)">📄</span>
+          <span class="student-info-side">
+            <span class="s-name">{{ ws.topic }}</span>
+            <span class="s-class">{{ ws.studentClass }} · {{ ws.difficulty }}</span>
+          </span>
+        </button>
+      }
+    </div>
+
+    <button class="logout-btn" (click)="auth.logout()">
+      🔒 Logout
+    </button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="dash-main">
+
+    <!-- ══ PROGRESS REPORT TAB ══ -->
+    <div *ngIf="activeTab === 'reports'">
+      <div class="dash-topbar no-print">
+        <div>
+          <h1 class="dash-title">Progress Report</h1>
+          <p class="dash-subtitle">{{ selectedReport.studentName }} · {{ selectedReport.studentClass }} · {{ selectedReport.month }}</p>
+        </div>
+        <button class="btn-download" (click)="downloadReport()">⬇️ Download PDF</button>
+      </div>
+
+      <!-- Report card -->
+      <div class="report-card" id="printArea">
+        <div class="report-header">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+            <div>
+              <div class="report-academy">AMR Digital Academy</div>
+              <div class="report-subtitle">Monthly Progress Report — {{ selectedReport.month }}</div>
+            </div>
+            <div class="report-class-badge">{{ selectedReport.studentClass }}</div>
+          </div>
+        </div>
+
+        <div class="report-meta">
+          <div class="meta-cell"><div class="meta-label">Student</div><div class="meta-val">{{ selectedReport.studentName }}</div></div>
+          <div class="meta-cell"><div class="meta-label">Parent</div><div class="meta-val">{{ selectedReport.parentName }}</div></div>
+          <div class="meta-cell"><div class="meta-label">Class</div><div class="meta-val">{{ selectedReport.studentClass }}</div></div>
+          <div class="meta-cell"><div class="meta-label">Batch</div><div class="meta-val">{{ selectedReport.batch }}</div></div>
+          <div class="meta-cell"><div class="meta-label">Period</div><div class="meta-val">{{ selectedReport.month }}</div></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-label">Sessions Attended</div>
+            <div class="stat-value">{{ selectedReport.sessionsAttended }}/{{ selectedReport.totalSessions }}</div>
+            <div class="stat-bar-wrap"><div class="stat-bar" [style.width.%]="getAttendancePct()" style="background:#1D9E75"></div></div>
+            <div class="stat-pct">{{ getAttendancePct() }}%</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Homework Submitted</div>
+            <div class="stat-value">{{ selectedReport.homeworkSubmitted }}/{{ selectedReport.totalHomework }}</div>
+            <div class="stat-bar-wrap"><div class="stat-bar" [style.width.%]="getHomeworkPct()" style="background:#378ADD"></div></div>
+            <div class="stat-pct">{{ getHomeworkPct() }}%</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Avg Quiz Score</div>
+            <div class="stat-value">{{ getAvgQuiz() }}%</div>
+            <div class="stat-bar-wrap"><div class="stat-bar" [style.width.%]="getAvgQuiz()" style="background:#EF9F27"></div></div>
+            <div class="stat-pct">This month</div>
+          </div>
+          <div class="stat-box text-center">
+            <div class="stat-label">Overall Grade</div>
+            <div class="grade-circle" [style.color]="getGradeColor(selectedReport.overallGrade)" [style.borderColor]="getGradeColor(selectedReport.overallGrade)">
+              {{ selectedReport.overallGrade }}
+            </div>
+          </div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-title">Topic-wise Performance</div>
+          <div class="table-responsive">
+            <table class="table rp-table">
+              <thead>
+                <tr>
+                  <th>Topic</th><th>Sessions</th><th class="text-center">Score</th>
+                  <th>Progress</th><th class="text-center">Homework</th>
+                  <th class="text-center">Level</th><th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (t of selectedReport.topics; track t.topic) {
+                  <tr>
+                    <td class="topic-name">{{ t.topic }}</td>
+                    <td class="text-muted small">{{ t.sessions }}</td>
+                    <td class="text-center fw-semibold">{{ t.quiz }}/{{ t.maxQuiz }}</td>
+                    <td><div class="bar-track"><div class="bar-fill" [style.width.%]="getBarWidth(t.quiz,t.maxQuiz)" [style.background]="getBarColor(t.level)"></div></div></td>
+                    <td><div class="hw-dots">@for (d of t.homework; track $index) {<span class="hw-dot" [class.hw-done]="d===1" [class.hw-miss]="d===0"></span>}</div></td>
+                    <td class="text-center"><span class="level-badge {{ getLevelClass(t.level) }}">{{ t.level }}</span></td>
+                    <td class="text-muted small">{{ t.remarks }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-title">Teacher's Comment</div>
+          <div class="teacher-comment">{{ selectedReport.teacherComment }}</div>
+        </div>
+
+        <div class="report-section">
+          <div class="report-section-title">Next Steps</div>
+          <div class="row g-3">
+            <div class="col-6 col-md-3"><div class="next-card"><div class="next-label">Next Test</div><div class="next-val">{{ selectedReport.nextTestDate }}</div></div></div>
+            <div class="col-6 col-md-3"><div class="next-card"><div class="next-label">Next Session</div><div class="next-val">{{ selectedReport.nextSession }}</div></div></div>
+            <div class="col-6 col-md-3"><div class="next-card"><div class="next-label">Focus Topic</div><div class="next-val">{{ selectedReport.focusTopic }}</div></div></div>
+            <div class="col-6 col-md-3"><div class="next-card"><div class="next-label">Parent Action</div><div class="next-val">15 min daily revision</div></div></div>
+          </div>
+        </div>
+
+        <div class="report-footer">
+          <span>AMR Digital Academy · amrdigitalacademy00&#64;gmail.com</span>
+          <span class="fst-italic">"Learn with clarity. Grow with confidence."</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ WORKSHEETS TAB ══ -->
+    <div *ngIf="activeTab === 'worksheets'">
+      <div class="dash-topbar no-print">
+        <div>
+          <h1 class="dash-title">Worksheet</h1>
+          <p class="dash-subtitle">{{ selectedWorksheet.studentClass }} · {{ selectedWorksheet.topic }} · {{ selectedWorksheet.totalMarks }} questions</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn-check-answers" (click)="checkAnswers()" *ngIf="!submitted">✅ Check Answers</button>
+          <button class="btn-reset-ws" (click)="resetWorksheet()">🔁 Reset</button>
+          <button class="btn-download" (click)="downloadWorksheet()">⬇️ Download PDF</button>
+        </div>
+      </div>
+
+      <div class="ws-result-bar no-print" *ngIf="submitted">
+        <div class="ws-bar-track"><div class="ws-bar-fill" [style.width.%]="getScorePct()" [class.bar-pass]="getScorePct()>=80" [class.bar-avg]="getScorePct()>=50&&getScorePct()<80" [class.bar-fail]="getScorePct()<50"></div></div>
+        <span class="ws-bar-label">{{ score }}/{{ selectedWorksheet.totalMarks }} · {{ getScorePct() }}%</span>
+      </div>
+
+      <div class="worksheet-card">
+        <div class="ws-header">
+          <div class="d-flex justify-content-between flex-wrap gap-3">
+            <div>
+              <div class="ws-academy">AMR Digital Academy — Worksheet</div>
+              <div class="ws-header-sub">{{ selectedWorksheet.studentClass }} · {{ selectedWorksheet.topic }} · CBSE Aligned</div>
+            </div>
+            <span class="ws-header-badge {{ getDiffClass(selectedWorksheet.difficulty) }}">{{ selectedWorksheet.difficulty }}</span>
+          </div>
+        </div>
+
+        <div class="ws-student-row">
+          <div class="ws-meta-cell"><span class="ws-meta-label">Student:</span><span class="ws-meta-line">___________________________</span></div>
+          <div class="ws-meta-cell"><span class="ws-meta-label">Date:</span><span class="ws-meta-line">_______________</span></div>
+          <div class="ws-meta-cell"><span class="ws-meta-label">Score:</span>
+            <span *ngIf="submitted" class="ws-meta-score">{{ score }}/{{ selectedWorksheet.totalMarks }}</span>
+            <span *ngIf="!submitted" class="ws-meta-score ws-score-empty">— /{{ selectedWorksheet.totalMarks }}</span>
+          </div>
+          <div class="ws-meta-cell"><span class="ws-meta-label">Time:</span><span class="ws-meta-line">{{ selectedWorksheet.timeMinutes }} min</span></div>
+        </div>
+
+        <div class="ws-body">
+          @for (section of selectedWorksheet.sections; track section.title) {
+            <div class="ws-section">
+              <div class="ws-section-title">{{ section.title }}</div>
+              @for (q of section.questions; track q.id) {
+                <div class="q-row" [class.q-correct]="q.status==='correct'" [class.q-wrong]="q.status==='wrong'">
+                  <div class="q-num">{{ q.id }}</div>
+                  <div class="q-content">
+                    <div class="q-text">{{ q.text }}</div>
+                    <div class="q-answer-row">
+                      @if (q.type === 'input') {
+                        <input type="text" [(ngModel)]="q.userAnswer" class="q-input no-print"
+                               [class.inp-correct]="q.status==='correct'" [class.inp-wrong]="q.status==='wrong'"
+                               [disabled]="submitted" placeholder="Answer">
+                        <span class="print-only q-blank">___________</span>
+                      }
+                      @if (q.type === 'select' || q.type === 'truefalse') {
+                        @for (opt of q.options; track opt) {
+                          <button class="q-opt no-print"
+                                  [class.opt-sel]="q.userAnswer===opt && !submitted"
+                                  [class.opt-correct]="q.userAnswer===opt && q.status==='correct'"
+                                  [class.opt-wrong]="q.userAnswer===opt && q.status==='wrong'"
+                                  [class.opt-reveal]="submitted && opt===q.answer && q.status==='wrong'"
+                                  [disabled]="submitted"
+                                  (click)="q.userAnswer=opt">{{ opt }}</button>
+                        }
+                        <span class="print-only q-options-print">@for (opt of q.options; track opt) { ({{ opt }}) }</span>
+                      }
+                      @if (q.status === 'correct') { <span class="q-fb q-ok no-print">✅ Correct!</span> }
+                      @if (q.status === 'wrong')   { <span class="q-fb q-err no-print">❌ Ans: {{ q.answer }}</span> }
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="ws-result {{ getResultClass() }} no-print" *ngIf="submitted">{{ getResultMsg() }}</div>
+
+        <div class="ws-footer">
+          <span>AMR Digital Academy · amrdigitalacademy00&#64;gmail.com</span>
+          <span class="fst-italic">"Learn with clarity. Grow with confidence."</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>

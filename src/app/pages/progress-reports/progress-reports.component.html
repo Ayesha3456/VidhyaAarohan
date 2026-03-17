@@ -1,0 +1,226 @@
+<!-- Page hero (hidden on print) -->
+<section class="page-hero no-print">
+  <div class="container">
+    <span class="section-label">Parent Updates</span>
+    <h1 class="section-title mt-1">Student Progress Reports</h1>
+    <div class="amr-divider"></div>
+    <p class="section-subtitle">
+      Monthly topic-wise performance report for each student — shared with parents every month.
+    </p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+
+    <!-- Student selector (hidden on print) -->
+    <div class="student-selector no-print mb-5">
+      <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+        <span class="selector-label">Select Student:</span>
+        @for (s of students; track s.id) {
+          <button
+            class="student-btn"
+            [class.active]="selectedReport.id === s.id"
+            (click)="selectStudent(s)">
+            <span class="student-initials">{{ s.studentName[0] }}</span>
+            <span class="student-info">
+              <span class="student-name-btn">{{ s.studentName }}</span>
+              <span class="student-class-btn">{{ s.studentClass }}</span>
+            </span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Report card -->
+    <div class="report-card" id="reportCard">
+
+      <!-- Report header -->
+      <div class="report-header">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+          <div>
+            <div class="report-academy">AMR Digital Academy</div>
+            <div class="report-subtitle">Monthly Progress Report — {{ selectedReport.month }}</div>
+          </div>
+          <div class="report-class-badge">{{ selectedReport.studentClass }}</div>
+        </div>
+      </div>
+
+      <!-- Student meta -->
+      <div class="report-meta">
+        <div class="meta-cell">
+          <div class="meta-label">Student</div>
+          <div class="meta-val">{{ selectedReport.studentName }}</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Parent</div>
+          <div class="meta-val">{{ selectedReport.parentName }}</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Class</div>
+          <div class="meta-val">{{ selectedReport.studentClass }}</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Batch</div>
+          <div class="meta-val">{{ selectedReport.batch }}</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Report Period</div>
+          <div class="meta-val">{{ selectedReport.month }}</div>
+        </div>
+      </div>
+
+      <!-- Summary stats -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-label">Sessions Attended</div>
+          <div class="stat-value">{{ selectedReport.sessionsAttended }}/{{ selectedReport.totalSessions }}</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" [style.width.%]="getAttendancePct()" style="background:#1D9E75"></div>
+          </div>
+          <div class="stat-pct">{{ getAttendancePct() }}%</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Homework Submitted</div>
+          <div class="stat-value">{{ selectedReport.homeworkSubmitted }}/{{ selectedReport.totalHomework }}</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" [style.width.%]="getHomeworkPct()" style="background:#378ADD"></div>
+          </div>
+          <div class="stat-pct">{{ getHomeworkPct() }}%</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Avg Quiz Score</div>
+          <div class="stat-value">{{ getAvgQuiz() }}%</div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" [style.width.%]="getAvgQuiz()" style="background:#EF9F27"></div>
+          </div>
+          <div class="stat-pct">This month</div>
+        </div>
+        <div class="stat-box text-center">
+          <div class="stat-label">Overall Grade</div>
+          <div class="grade-circle" [style.color]="getGradeColor(selectedReport.overallGrade)"
+               [style.borderColor]="getGradeColor(selectedReport.overallGrade)">
+            {{ selectedReport.overallGrade }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic table -->
+      <div class="report-section">
+        <div class="report-section-title">Topic-wise Performance</div>
+        <div class="table-responsive">
+          <table class="table rp-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Sessions</th>
+                <th class="text-center">Score</th>
+                <th>Progress</th>
+                <th class="text-center">Homework</th>
+                <th class="text-center">Level</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (t of selectedReport.topics; track t.topic) {
+                <tr>
+                  <td class="topic-name">{{ t.topic }}</td>
+                  <td class="text-muted small">{{ t.sessions }}</td>
+                  <td class="text-center fw-semibold">{{ t.quiz }}/{{ t.maxQuiz }}</td>
+                  <td>
+                    <div class="bar-track">
+                      <div class="bar-fill"
+                           [style.width.%]="getBarWidth(t)"
+                           [style.background]="getBarColor(t.level)">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="hw-dots">
+                      @for (dot of t.homework; track $index) {
+                        <span class="hw-dot" [class.hw-done]="dot === 1" [class.hw-miss]="dot === 0"></span>
+                      }
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span class="level-badge {{ getLevelClass(t.level) }}">{{ t.level }}</span>
+                  </td>
+                  <td class="text-muted small">{{ t.remarks }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Teacher comment -->
+      <div class="report-section">
+        <div class="report-section-title">Teacher's Comment</div>
+        <div class="teacher-comment">
+          <p class="mb-0">{{ selectedReport.teacherComment }}</p>
+        </div>
+      </div>
+
+      <!-- Next steps -->
+      <div class="report-section">
+        <div class="report-section-title">Next Steps</div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="next-card">
+              <div class="next-label">Next Test</div>
+              <div class="next-val">{{ selectedReport.nextTestDate }}</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="next-card">
+              <div class="next-label">Next Session</div>
+              <div class="next-val">{{ selectedReport.nextSession }}</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="next-card">
+              <div class="next-label">Focus Topic</div>
+              <div class="next-val">{{ selectedReport.focusTopic }}</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="next-card">
+              <div class="next-label">Parent Action</div>
+              <div class="next-val">15 min daily revision</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="report-section">
+        <div class="d-flex flex-wrap gap-3 align-items-center">
+          <span class="text-muted small">Level key:</span>
+          <span class="level-badge level-exc">Excellent</span>
+          <span class="level-badge level-good">Good</span>
+          <span class="level-badge level-avg">Average</span>
+          <span class="level-badge level-need">Needs Work</span>
+          <span class="text-muted small ms-3">Homework dots: 🟢 Submitted &nbsp; ⚪ Missed</span>
+        </div>
+      </div>
+
+      <!-- Report footer -->
+      <div class="report-footer">
+        <span>AMR Digital Academy &middot; amrdigitalacademy00&#64;gmail.com</span>
+        <span class="fst-italic">"Learn with clarity. Grow with confidence."</span>
+      </div>
+
+    </div>
+
+    <!-- Download button (hidden on print) -->
+    <div class="text-center mt-4 no-print">
+      <button class="btn-download" (click)="downloadPDF()">
+        ⬇️ Download as PDF — {{ selectedReport.studentName }}
+      </button>
+      <p class="text-muted small mt-2">
+        Opens print dialog — choose "Save as PDF" from your printer options.
+      </p>
+    </div>
+
+  </div>
+</section>

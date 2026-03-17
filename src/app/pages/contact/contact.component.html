@@ -1,0 +1,129 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">Get in Touch</span>
+    <h1 class="section-title mt-1">Contact &amp; Demo Booking</h1>
+    <div class="amr-divider"></div>
+    <p class="section-subtitle">
+      Fill in the form below to book a free demo class or enquire about our services.
+      We'll get back to you within 24 hours.
+    </p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+    <div class="row justify-content-center g-5">
+
+      <!-- Info Panel -->
+      <div class="col-12 col-lg-4">
+        <div class="contact-info-box">
+          <h5 class="fw-bold mb-4">Why Book a Demo?</h5>
+          <div class="contact-point"><span class="contact-icon">✅</span><span>Completely free — no payment needed</span></div>
+          <div class="contact-point"><span class="contact-icon">🎥</span><span>60-minute live session with the teacher</span></div>
+          <div class="contact-point"><span class="contact-icon">👁️</span><span>Experience our teaching style first-hand</span></div>
+          <div class="contact-point"><span class="contact-icon">🤝</span><span>No obligation to join afterwards</span></div>
+          <div class="contact-point"><span class="contact-icon">💬</span><span>Ask all your questions directly</span></div>
+          <hr class="my-4">
+          <h6 class="fw-bold mb-3">📬 Direct Contact</h6>
+          <div class="contact-detail">
+            <span>📧</span>
+            <a href="mailto:amrdigitalacademy00@gmail.com">amrdigitalacademy00&#64;gmail.com</a>
+          </div>
+          <div class="contact-detail">
+            <span>🌐</span>
+            <span>Online Classes — Nationwide</span>
+          </div>
+          <div class="class-info-box mt-4">
+            <h6 class="fw-bold mb-3">ℹ️ Class Info</h6>
+            <div class="class-info-row"><span>Batch Size</span><strong>5–6 Students</strong></div>
+            <div class="class-info-row"><span>Sessions</span><strong>2–3 per week</strong></div>
+            <div class="class-info-row"><span>Duration</span><strong>60 minutes</strong></div>
+            <div class="class-info-row"><span>Format</span><strong>Online Live</strong></div>
+            <div class="class-info-row"><span>Classes</span><strong>1–8 (CBSE)</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-12 col-lg-8">
+        <div class="contact-form-wrapper">
+          <div class="contact-form-header">
+            <h5 class="fw-bold text-white mb-1">📅 Book a Free Demo / Send Enquiry</h5>
+            <p class="mb-0" style="color:rgba(255,255,255,0.78);font-size:0.88rem">
+              Fill in the details — click Send to open your email or WhatsApp with everything pre-filled.
+            </p>
+          </div>
+          <div class="contact-form-body">
+            <div id="contactForm">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Parent / Guardian Name <span class="text-danger">*</span></label>
+                  <input type="text" id="parentName" class="form-control amr-input" placeholder="e.g. Priya Sharma">
+                </div>
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Student Name <span class="text-danger">*</span></label>
+                  <input type="text" id="studentName" class="form-control amr-input" placeholder="e.g. Arjun Sharma">
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Phone / WhatsApp <span class="text-danger">*</span></label>
+                  <input type="tel" id="phone" class="form-control amr-input" placeholder="e.g. 9876543210">
+                </div>
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Your Email Address</label>
+                  <input type="email" id="emailAddr" class="form-control amr-input" placeholder="e.g. parent@gmail.com">
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Student's Class <span class="text-danger">*</span></label>
+                  <select id="studentClass" class="form-select amr-input">
+                    <option value="">Select Class</option>
+                    <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+                    <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+                    <option>Class 7</option><option>Class 8</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <label class="form-label fw-semibold">Enquiry Type</label>
+                  <select id="enquiryType" class="form-select amr-input">
+                    <option value="Book a Free Demo Class">📅 Book a Free Demo Class</option>
+                    <option value="Math Tuition Enquiry">➕ Math Tuition Enquiry</option>
+                    <option value="Web Development Enquiry">💻 Web Development Enquiry</option>
+                    <option value="General Question">❓ General Question</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Preferred Time / Message</label>
+                <textarea id="message" class="form-control amr-input" rows="4"
+                  placeholder="e.g. Preferred time: evenings after 6 PM on weekdays. My child needs help with fractions..."></textarea>
+              </div>
+              <div id="formError" class="alert alert-danger py-2 small d-none">
+                ⚠️ Please fill in all required fields: Parent Name, Student Name, Phone and Class.
+              </div>
+              <div class="d-flex flex-wrap gap-3 align-items-center mt-4">
+                <button class="btn-send-email" (click)="sendViaEmail()">📧 Send via Email</button>
+                <button class="btn-send-whatsapp" (click)="sendViaWhatsApp()">💬 Send via WhatsApp</button>
+              </div>
+              <p class="text-muted small mt-3 mb-0">
+                <strong>📧 Email</strong> will open your mail app with the enquiry pre-filled &nbsp;|&nbsp;
+                <strong>💬 WhatsApp</strong> will open a pre-filled message ready to send.
+              </p>
+            </div>
+
+            <div id="successMsg" class="success-box d-none">
+              <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+              <h5 class="fw-bold mb-2">Your app is ready to send!</h5>
+              <p class="text-muted mb-3">Your email / WhatsApp has opened with everything pre-filled. Just hit Send!</p>
+              <p class="text-muted small">We'll reply within 24 hours. Looking forward to speaking with you.</p>
+              <button class="btn-outline-amr-sm mt-3" (click)="resetForm()">↩ Send Another Enquiry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

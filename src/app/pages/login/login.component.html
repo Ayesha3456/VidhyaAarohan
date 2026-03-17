@@ -1,0 +1,47 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <div class="login-brand">
+      <div class="login-brand-icon">🧮</div>
+      <div>
+        <div class="login-brand-name">AMR Digital Academy</div>
+        <div class="login-brand-sub">Teacher Dashboard</div>
+      </div>
+    </div>
+
+    <div class="login-divider"></div>
+
+    <h2 class="login-title">Welcome back</h2>
+    <p class="login-desc">Enter your teacher password to access student reports and worksheets.</p>
+
+    <div class="mb-3">
+      <label class="form-label login-label">Password</label>
+      <div class="password-wrap">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          class="form-control login-input"
+          placeholder="Enter teacher password"
+          (keyup.enter)="submit()"
+          autofocus>
+        <button class="show-btn" type="button" (click)="showPassword = !showPassword">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="login-error" *ngIf="error">
+      ⚠️ {{ error }}
+    </div>
+
+    <button class="login-btn" (click)="submit()" [disabled]="loading">
+      @if (loading) { <span class="login-spinner"></span> Checking... }
+      @else { 🔓 Login to Dashboard }
+    </button>
+
+    <p class="login-note">
+      🔒 This area is only for the teacher. Student data is private and not accessible publicly.
+    </p>
+
+  </div>
+</div>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMR Digital Academy | Online Math Tuition & Web Development</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons CSS removed - using emoji instead -->
+<style>
+/* ── CSS Variables ─────────────────────────── */
+:root {
+  --primary:#2563EB; --primary-light:#3B82F6; --primary-dark:#1D4ED8;
+  --teal:#0D9488; --teal-light:#14B8A6; --accent:#0EA5E9;
+  --bg-white:#FFFFFF; --bg-light:#F0F7FF; --bg-subtle:#F8FAFC;
+  --text-dark:#1E293B; --text-body:#334155; --text-muted:#64748B;
+  --border:#E2E8F0;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:0 4px 16px rgba(37,99,235,0.10);
+  --shadow-lg:0 8px 32px rgba(37,99,235,0.14);
+  --radius:12px; --radius-lg:20px;
+  --font-head:'Playfair Display',Georgia,serif;
+  --font-body:'Nunito','Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text-body);background:#fff;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-head);color:var(--text-dark);line-height:1.25;font-weight:700}
+main{padding-top:72px}
+
+/* ── Section-level helpers ──────────────────── */
+.section-label{display:inline-block;font-family:var(--font-body);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:rgba(37,99,235,.08);border-radius:100px;padding:4px 14px;margin-bottom:14px}
+.section-title{font-size:clamp(1.75rem,4vw,2.4rem);color:var(--text-dark);margin-bottom:.5rem}
+.section-subtitle{font-size:1.05rem;color:var(--text-muted);max-width:580px}
+.amr-divider{width:48px;height:4px;background:linear-gradient(90deg,var(--primary),var(--teal));border-radius:2px;margin:12px 0 20px}
+.page-section{padding:80px 0}
+.page-section-alt{padding:80px 0;background:var(--bg-light)}
+.page-hero{padding:70px 0 55px;background:linear-gradient(135deg,var(--bg-light) 0%,#EFF6FF 100%)}
+
+/* ── Buttons ──────────────────────────────── */
+.btn-amr-primary{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;border:none;border-radius:50px;padding:13px 30px;font-family:var(--font-body);font-size:.95rem;font-weight:700;text-decoration:none;transition:all .2s;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.btn-amr-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.38);color:#fff}
+.btn-amr-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--primary);border:2px solid var(--primary);border-radius:50px;padding:11px 28px;font-family:var(--font-body);font-size:.95rem;font-weight:700;text-decoration:none;transition:all .2s;cursor:pointer}
+.btn-amr-outline:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+.btn-amr-teal{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;border:none;border-radius:50px;padding:13px 30px;font-family:var(--font-body);font-size:.95rem;font-weight:700;text-decoration:none;transition:all .2s;cursor:pointer;box-shadow:0 4px 14px rgba(13,148,136,.3)}
+.btn-amr-teal:hover{background:#0f766e;transform:translateY(-2px);color:#fff}
+
+/* ── Cards ────────────────────────────────── */
+.amr-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .25s;box-shadow:var(--shadow-sm);height:100%}
+.amr-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.18)}
+.card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem;flex-shrink:0}
+.icon-blue{background:rgba(37,99,235,.10);color:var(--primary)}
+.icon-teal{background:rgba(13,148,136,.10);color:var(--teal)}
+.icon-sky{background:rgba(14,165,233,.10);color:#0284C7}
+.icon-indigo{background:rgba(99,102,241,.10);color:#6366F1}
+.icon-green{background:rgba(16,185,129,.10);color:#059669}
+.icon-amber{background:rgba(245,158,11,.10);color:#D97706}
+.badge-amr{display:inline-block;background:rgba(37,99,235,.09);color:var(--primary);border-radius:50px;padding:4px 14px;font-size:.78rem;font-weight:700;letter-spacing:.04em}
+.badge-teal{background:rgba(13,148,136,.09);color:var(--teal)}
+
+/* ── Navbar ────────────────────────────────── */
+.navbar{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:all .3s;padding:12px 0}
+.navbar.scrolled{border-bottom-color:var(--border);box-shadow:0 2px 16px rgba(0,0,0,.07);padding:8px 0}
+.brand-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--primary),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0}
+.brand-name{font-family:var(--font-body);font-weight:800;font-size:1rem;color:var(--text-dark);line-height:1}
+.brand-sub{font-family:var(--font-body);font-size:.7rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.08em}
+.nav-link{font-family:var(--font-body);font-weight:600;font-size:.9rem;color:var(--text-body)!important;padding:8px 12px!important;border-radius:8px;transition:all .2s;cursor:pointer}
+.nav-link:hover,.nav-link.active{color:var(--primary)!important;background:rgba(37,99,235,.06)}
+.nav-cta{background:var(--primary)!important;color:#fff!important;border-radius:50px!important;padding:8px 20px!important;font-weight:700!important;margin-left:6px;box-shadow:0 3px 10px rgba(37,99,235,.28)}
+.nav-cta:hover{background:var(--primary-dark)!important;color:#fff!important;transform:translateY(-1px)}
+.navbar-toggler{border:none;padding:6px;outline:none!important;box-shadow:none!important}
+.toggler-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--bg-light);border-radius:8px;font-size:1.3rem;color:var(--text-dark)}
+@media(max-width:991px){
+  .navbar-collapse{background:#fff;border-top:1px solid var(--border);padding:12px 0;margin-top:8px;border-radius:0 0 12px 12px;box-shadow:0 8px 20px rgba(0,0,0,.1)}
+  .nav-link{padding:10px 16px!important;border-radius:6px}
+  .nav-cta{margin-left:16px;margin-top:8px;display:inline-block}
+}
+
+/* ── HOME ─────────────────────────────────── */
+.hero-section{padding:60px 0 80px;background:linear-gradient(135deg,#F0F7FF 0%,#EFF6FF 60%,#F0FDFA 100%);overflow:hidden}
+.hero-title{font-size:clamp(2rem,5vw,3rem);line-height:1.18;margin-bottom:1rem}
+.hero-highlight{background:linear-gradient(135deg,var(--primary),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:1.05rem;color:var(--text-muted);max-width:500px;line-height:1.75}
+.hero-stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 20px;display:flex;flex-direction:column;align-items:center;min-width:90px;box-shadow:var(--shadow-sm)}
+.stat-number{font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--primary);line-height:1}
+.stat-label{font-size:.72rem;font-weight:600;color:var(--text-muted);text-align:center;margin-top:4px}
+.hero-visual{position:relative;padding:20px}
+.hero-card{background:#fff;border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.hero-card-side{position:absolute;bottom:0;right:-10px;width:210px;z-index:3;padding:16px 18px}
+.side-row{font-size:.84rem;font-weight:600;color:var(--text-dark);padding:5px 0;display:flex;align-items:center}
+.session-bar{background:var(--bg-light);border-radius:8px;padding:8px 14px}
+.session-topic{font-size:.88rem;font-weight:600;color:var(--primary)}
+.dec{position:absolute;border-radius:50%;opacity:.12}
+.dec-1{width:160px;height:160px;background:var(--primary);top:-20px;right:-20px}
+.dec-2{width:80px;height:80px;background:var(--teal);bottom:30px;left:0}
+.classes-ribbon{background:var(--text-dark);padding:16px 0}
+.ribbon-label{font-size:.82rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-right:8px}
+.class-chip{display:inline-block;background:rgba(255,255,255,.08);color:#cbd5e1;border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:5px 14px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer}
+.class-chip:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.step-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.5rem;height:100%;transition:all .25s;position:relative}
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.2)}
+.step-number{font-family:var(--font-head);font-size:2rem;font-weight:700;color:var(--primary);opacity:.18;line-height:1}
+.webdev-banner{background:linear-gradient(135deg,#F0FDFA,#E6F7F5);border:1px solid rgba(13,148,136,.18);border-radius:var(--radius-lg);padding:2.5rem}
+@media(max-width:768px){.hero-card-side{display:none}.hero-visual{padding:0}}
+
+/* ── MATH TUITION ─────────────────────────── */
+.topic-chip{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 12px;text-align:center;font-size:.82rem;font-weight:700;color:var(--text-dark);height:100%;transition:all .2s;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.topic-chip:hover{border-color:var(--primary);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.class-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;height:100%;transition:all .25s}
+.class-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.2)}
+.class-badge{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:8px;padding:4px 14px;font-size:.82rem;font-weight:700;margin-bottom:14px}
+.class-topics{list-style:none;padding:0;margin:0}
+.class-topics li{font-size:.88rem;color:var(--text-body);padding:4px 0;display:flex;align-items:center}
+
+/* ── TEACHING METHOD ──────────────────────── */
+.method-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:2rem;height:100%;transition:all .25s;box-shadow:var(--shadow-sm)}
+.method-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.15)}
+.method-tag{background:var(--bg-light);color:var(--text-dark);border-radius:50px;padding:3px 12px;font-size:.78rem;font-weight:600;display:inline-flex;align-items:center}
+.philosophy-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-md)}
+.philosophy-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-weight:600;font-size:.93rem;color:var(--text-dark)}
+.philosophy-item:last-child{border-bottom:none}
+.philosophy-item i{font-size:1rem;color:var(--primary);width:20px;flex-shrink:0}
+
+/* ── PROGRESS REPORTS ─────────────────────── */
+.report-wrapper{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.report-header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:20px 28px}
+.report-header-badge{background:rgba(255,255,255,.15);color:#fff;border-radius:50px;padding:4px 14px;font-size:.78rem;font-weight:700;white-space:nowrap}
+.amr-table th{background:var(--bg-light);color:var(--text-dark);font-weight:700;font-size:.78rem;letter-spacing:.04em;border-color:var(--border);padding:14px 16px}
+.amr-table td{color:var(--text-body);font-size:.9rem;vertical-align:middle;border-color:var(--border);padding:14px 16px}
+.amr-table tbody tr:hover{background:var(--bg-light)}
+.u-badge{display:inline-block;border-radius:50px;padding:3px 12px;font-size:.78rem;font-weight:700}
+.b-excellent{background:#DCFCE7;color:#15803D}
+.b-good{background:#DBEAFE;color:#1D4ED8}
+.b-needs{background:#FEF3C7;color:#B45309}
+.prog-bar-wrap{width:70px;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--teal));border-radius:3px}
+.trend-up{color:#16A34A;font-size:1.1rem}
+.trend-neutral{color:#94A3B8;font-size:1.1rem}
+.report-footer{border-top:1px solid var(--border);padding:16px 28px;background:var(--bg-subtle)}
+.report-note{font-size:.85rem;color:var(--text-muted);margin-bottom:4px}
+
+/* ── WORKSHEETS ───────────────────────────── */
+.ws-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;height:100%;display:flex;flex-direction:column;transition:all .25s;box-shadow:var(--shadow-sm)}
+.ws-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.18)}
+.ws-emoji{width:44px;height:44px;background:var(--bg-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.ws-class-tag{background:var(--primary);color:#fff;border-radius:50px;padding:2px 12px;font-size:.75rem;font-weight:700}
+.ws-level{border-radius:50px;padding:2px 10px;font-size:.72rem;font-weight:700}
+.lv-begin{background:#DCFCE7;color:#15803D}
+.lv-inter{background:#DBEAFE;color:#1D4ED8}
+.lv-adv{background:#EDE9FE;color:#7C3AED}
+.ws-topics{list-style:none;padding:0;margin:0 0 auto;flex-grow:1}
+.ws-topics li{font-size:.85rem;color:var(--text-body);padding:3px 0;display:flex;align-items:center}
+.ws-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.ws-pages{font-size:.8rem;font-weight:600;color:var(--text-muted)}
+.ws-dl-btn{display:inline-flex;align-items:center;background:var(--primary);color:#fff;border-radius:50px;padding:6px 14px;font-size:.78rem;font-weight:700;text-decoration:none;transition:all .2s;cursor:pointer}
+.ws-dl-btn:hover{background:var(--primary-dark);color:#fff;transform:translateY(-1px)}
+
+/* ── WEB DEV ──────────────────────────────── */
+.tech-badge{background:#fff;border:1px solid var(--border);border-radius:50px;padding:10px 22px;font-weight:700;font-size:.9rem;color:var(--text-dark);transition:all .2s;display:flex;align-items:center}
+.tech-badge:hover{border-color:var(--teal);box-shadow:0 3px 12px rgba(13,148,136,.15);transform:translateY(-2px)}
+.workflow-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.5rem;height:100%;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+.workflow-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(13,148,136,.2)}
+.workflow-num{position:absolute;top:12px;right:14px;font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--teal);opacity:.15;line-height:1}
+.webdev-cta{padding:70px 0;background:linear-gradient(135deg,var(--teal),var(--primary))}
+
+/* ── ABOUT ────────────────────────────────── */
+.founder-avatar{width:120px;height:120px;background:linear-gradient(135deg,var(--bg-light),#DBEAFE);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:var(--primary);margin:0 auto;border:3px solid var(--border);box-shadow:var(--shadow-md)}
+.values-list{list-style:none;padding:0;margin:0}
+.values-list li{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-weight:600;font-size:.95rem;color:var(--text-dark)}
+.values-list li:last-child{border-bottom:none}
+.values-list li i{color:var(--teal);font-size:1.1rem;flex-shrink:0}
+.about-cta-box{background:linear-gradient(135deg,var(--bg-light),#EFF6FF);border:1px solid rgba(37,99,235,.14);border-radius:var(--radius-lg);padding:2.5rem}
+
+/* ── CONTACT ──────────────────────────────── */
+.contact-info-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm);height:100%}
+.contact-point{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-size:.9rem;color:var(--text-body);font-weight:500}
+.contact-point i{color:var(--teal);font-size:1rem;flex-shrink:0;margin-top:2px}
+.contact-detail{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text-muted);margin-bottom:8px}
+.contact-detail i{color:var(--primary);font-size:.9rem}
+.contact-detail a{color:var(--text-body);text-decoration:none;font-weight:600}
+.contact-detail a:hover{color:var(--primary)}
+.class-info-box{background:var(--bg-light);border-radius:var(--radius);padding:1.25rem;border:1px solid rgba(37,99,235,.1)}
+.class-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:.85rem;color:var(--text-muted)}
+.class-info-row:last-child{border-bottom:none}
+.class-info-row strong{color:var(--text-dark)}
+.form-wrapper{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.form-header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:20px 28px}
+.google-form-iframe{display:block;width:100%;min-height:680px;border:none}
+.form-fallback{border-top:1px solid var(--border);background:var(--bg-subtle);padding:20px 28px}
+
+/* ── FOOTER ───────────────────────────────── */
+.footer{background:var(--text-dark);color:#94a3b8}
+.footer-top{padding:60px 0 40px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:18px 0}
+.footer-brand-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;flex-shrink:0}
+.footer-brand-name{font-family:var(--font-body);font-weight:800;font-size:1rem;color:#fff}
+.footer-desc{font-size:.9rem;line-height:1.65;color:#94a3b8;max-width:320px}
+.footer-contact-item{display:flex;align-items:center;gap:8px;font-size:.88rem;margin-bottom:6px}
+.footer-contact-item i{color:var(--primary-light);font-size:.85rem}
+.footer-contact-item a{color:#94a3b8;text-decoration:none;transition:color .2s}
+.footer-contact-item a:hover{color:#fff}
+.footer-heading{font-family:var(--font-body);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:16px}
+.footer-links{list-style:none;padding:0;margin:0}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:.9rem;transition:color .2s;cursor:pointer}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.83rem;color:#64748b}
+@media(max-width:768px){.page-section,.page-section-alt{padding:52px 0}.page-hero{padding:52px 0 40px}.amr-card{padding:1.5rem}}
+
+/* ── Contact form (new) ── */
+.contact-info-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-sm);height:100%}
+.contact-point{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px;font-size:.9rem;color:var(--text-body);font-weight:500}
+.cicon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.contact-detail{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text-muted);margin-bottom:8px}
+.contact-detail a{color:var(--text-body);text-decoration:none;font-weight:600}
+.contact-detail a:hover{color:var(--primary)}
+.class-info-box{background:var(--bg-light);border-radius:var(--radius);padding:1.2rem;border:1px solid rgba(37,99,235,.1)}
+.class-info-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:.84rem;color:var(--text-muted)}
+.class-info-row:last-child{border-bottom:none}
+.class-info-row strong{color:var(--text-dark)}
+.cf-wrapper{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.cf-header{background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:20px 28px}
+.cf-body{padding:28px}
+.amr-inp{border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:.92rem;color:var(--text-dark);transition:all .2s;background:#fff;width:100%}
+.amr-inp:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.amr-inp::placeholder{color:#b0b8c4}
+textarea.amr-inp{resize:vertical;min-height:110px}
+.btn-cf-email{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;border:none;border-radius:50px;padding:13px 26px;font-family:var(--font-body);font-size:.92rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.btn-cf-email:hover{background:var(--primary-dark);transform:translateY(-2px)}
+.btn-cf-whatsapp{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border:none;border-radius:50px;padding:13px 26px;font-family:var(--font-body);font-size:.92rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(37,211,102,.3)}
+.btn-cf-whatsapp:hover{background:#1ebe5d;transform:translateY(-2px)}
+.btn-cf-outline{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--primary);border:2px solid var(--primary);border-radius:50px;padding:9px 22px;font-family:var(--font-body);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-cf-outline:hover{background:var(--primary);color:#fff}
+@media(max-width:575px){.cf-body{padding:18px 14px}.btn-cf-email,.btn-cf-whatsapp{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="#" onclick="showPage('home')">
+      <div class="brand-icon">🧮</div>
+      <div>
+        <span class="brand-name">AMR Digital</span>
+        <span class="brand-sub d-block">Academy</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="toggler-icon">☰</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link active" id="nav-home" onclick="showPage('home')">Home</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-math" onclick="showPage('math')">Math Tuition</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-method" onclick="showPage('method')">Teaching Method</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-worksheets" onclick="showPage('worksheets')">Worksheets</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-webdev" onclick="showPage('webdev')">Web Dev</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-about" onclick="showPage('about')">About</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" id="nav-contact" onclick="showPage('contact')">📅 Book Demo</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="mainContent">
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div id="page-home">
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-6">
+          <span class="section-label">CBSE Classes 1–8 · Online</span>
+          <h1 class="hero-title">
+            Build a Strong<br>
+            <span class="hero-highlight">Math Foundation</span><br>
+            from Home
+          </h1>
+          <p class="hero-desc">AMR Digital Academy offers live online math tuition for CBSE students in Classes 1–8. Small batches of just 5–6 students ensure every child gets the attention they deserve.</p>
+          <div class="d-flex flex-wrap gap-3 my-4">
+            <div class="hero-stat"><span class="stat-number">5–6</span><span class="stat-label">Students per Batch</span></div>
+            <div class="hero-stat"><span class="stat-number">8</span><span class="stat-label">Classes Covered</span></div>
+            <div class="hero-stat"><span class="stat-number">3×</span><span class="stat-label">Sessions/Week</span></div>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn-amr-primary" onclick="showPage('contact')">📅 Book a Free Demo</a>
+            <a class="btn-amr-outline" onclick="showPage('webdev')">💻 Web Dev Services</a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="hero-visual">
+            <div class="hero-card" style="position:relative;z-index:2">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="card-icon icon-blue mb-0">🧮</div>
+                <div><h6 class="mb-0 fw-bold">Live Math Session</h6><small class="text-muted">Class 6 — Fractions</small></div>
+              </div>
+              <div class="session-bar mb-3"><span class="session-topic">Topic: Adding Unlike Fractions</span></div>
+              <div class="d-flex gap-2 flex-wrap">
+                <span class="badge-amr">📐 Visual Examples</span>
+                <span class="badge-amr badge-teal">🧩 Math Puzzles</span>
+                <span class="badge-amr">📝 Worksheets</span>
+              </div>
+            </div>
+            <div class="hero-card hero-card-side">
+              <div class="side-row">✅ Concept Clarity</div>
+              <div class="side-row">✅ Homework Help</div>
+              <div class="side-row">✅ Monthly Reports</div>
+            </div>
+            <div class="dec dec-1"></div>
+            <div class="dec dec-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes Ribbon -->
+  <section class="classes-ribbon">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
+        <span class="ribbon-label">Classes Covered:</span>
+        <span class="class-chip" onclick="showPage('math')">Class 1</span>
+        <span class="class-chip" onclick="showPage('math')">Class 2</span>
+        <span class="class-chip" onclick="showPage('math')">Class 3</span>
+        <span class="class-chip" onclick="showPage('math')">Class 4</span>
+        <span class="class-chip" onclick="showPage('math')">Class 5</span>
+        <span class="class-chip" onclick="showPage('math')">Class 6</span>
+        <span class="class-chip" onclick="showPage('math')">Class 7</span>
+        <span class="class-chip" onclick="showPage('math')">Class 8</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">Everything your child needs<br>to excel in Math</h2>
+        <p class="section-subtitle mx-auto mt-2">Our approach combines strong foundations, regular practice, and personalised attention.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-blue">💡</div><h5 class="fw-bold mb-2">Concept Clarity</h5><p class="mb-0 text-muted small">Every topic is taught from the ground up. Students build strong fundamentals — no rote learning.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-teal">📚</div><h5 class="fw-bold mb-2">Homework Support</h5><p class="mb-0 text-muted small">Dedicated time for homework help ensures students never feel stuck after class.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-amber">🏆</div><h5 class="fw-bold mb-2">Confidence Building</h5><p class="mb-0 text-muted small">Regular encouragement and positive reinforcement help students enjoy math rather than fear it.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-sky">🖥️</div><h5 class="fw-bold mb-2">Interactive Learning</h5><p class="mb-0 text-muted small">Live sessions with quizzes, puzzles, and visual examples keep students engaged and curious.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-indigo">👥</div><h5 class="fw-bold mb-2">Small Batches (5–6)</h5><p class="mb-0 text-muted small">Intimate class sizes ensure every student gets personal attention and doubts are resolved.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="amr-card"><div class="card-icon icon-green">📈</div><h5 class="fw-bold mb-2">Progress Tracking</h5><p class="mb-0 text-muted small">Monthly progress reports keep parents informed about their child's learning journey.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-label">Getting Started</span>
+        <h2 class="section-title">How to Join AMR Digital Academy</h2>
+        <p class="section-subtitle mx-auto mt-2">Four simple steps to begin your child's learning journey.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="step-card"><span class="step-number">01</span><h5 class="fw-bold mb-2 mt-3">Book a Free Demo</h5><p class="mb-0 text-muted small">Fill out our form and we'll schedule a free trial class at a convenient time.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="step-card"><span class="step-number">02</span><h5 class="fw-bold mb-2 mt-3">Attend Demo Class</h5><p class="mb-0 text-muted small">Your child attends a live 60-minute session to experience our teaching style.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="step-card"><span class="step-number">03</span><h5 class="fw-bold mb-2 mt-3">Join the Batch</h5><p class="mb-0 text-muted small">Choose a batch that fits your schedule and start the learning journey.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="step-card"><span class="step-number">04</span><h5 class="fw-bold mb-2 mt-3">Track Progress</h5><p class="mb-0 text-muted small">Receive regular updates and monthly progress reports on your child's improvement.</p></div></div>
+      </div>
+      <div class="text-center mt-5">
+        <a class="btn-amr-primary" onclick="showPage('contact')">📅 Book a Free Demo Class</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Dev Banner -->
+  <section class="page-section">
+    <div class="container">
+      <div class="webdev-banner">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-md-8">
+            <span class="section-label">Secondary Service</span>
+            <h3 class="fw-bold mb-2">Professional Web Development Services</h3>
+            <p class="text-muted mb-0">Looking for a clean, responsive business website? We also build business sites, portfolio pages, landing pages, and custom web applications using Angular, Django, and more.</p>
+          </div>
+          <div class="col-12 col-md-4 text-md-end">
+            <a class="btn-amr-teal" onclick="showPage('webdev')">💻 Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ MATH TUITION ═══════════════ -->
+<div id="page-math" style="display:none">
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">CBSE Online Tuition</span>
+      <h1 class="section-title mt-1">Online Math Tuition<br>for Classes 1–8</h1>
+      <div class="amr-divider"></div>
+      <p class="section-subtitle">Structured curriculum, live interaction, and concept-first teaching for every CBSE class.</p>
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Class Format</span><h2 class="section-title">How Our Classes Work</h2></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="amr-card text-center"><div class="card-icon icon-blue mx-auto mb-3">🎥</div><h6 class="fw-bold mb-2">Online Live Classes</h6><p class="text-muted small mb-0">Interactive sessions via video call with whiteboard tools.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="amr-card text-center"><div class="card-icon icon-teal mx-auto mb-3">📆</div><h6 class="fw-bold mb-2">2–3 Sessions / Week</h6><p class="text-muted small mb-0">Consistent schedule to build steady learning momentum.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="amr-card text-center"><div class="card-icon icon-sky mx-auto mb-3">⏱️</div><h6 class="fw-bold mb-2">60-Minute Sessions</h6><p class="text-muted small mb-0">Focused duration — enough depth without fatigue.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="amr-card text-center"><div class="card-icon icon-indigo mx-auto mb-3">👥</div><h6 class="fw-bold mb-2">Small Batch (5–6)</h6><p class="text-muted small mb-0">Every student gets personal attention and doubt clearance.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Core Topics</span><h2 class="section-title">Key Topics Taught Across Classes</h2></div>
+      <div class="row justify-content-center g-3">
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">🔢Numbers & Operations</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">🥧Fractions</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">⬛Decimals</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">📐Geometry Basics</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">💬Word Problems</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="topic-chip">🧩Logical Thinking</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Class-wise Syllabus</span><h2 class="section-title">Topics by Class</h2></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 1</div><ul class="class-topics"><li>✔️ Numbers 1–100</li><li>✔️ Basic Addition</li><li>✔️ Basic Subtraction</li><li>✔️ Shapes</li><li>✔️ Patterns</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 2</div><ul class="class-topics"><li>✔️ Numbers up to 1000</li><li>✔️ Addition & Subtraction</li><li>✔️ Multiplication Intro</li><li>✔️ Measurement</li><li>✔️ Data Handling</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 3</div><ul class="class-topics"><li>✔️ 4-digit Numbers</li><li>✔️ Multiplication</li><li>✔️ Division</li><li>✔️ Fractions Intro</li><li>✔️ Time & Calendar</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 4</div><ul class="class-topics"><li>✔️ Large Numbers</li><li>✔️ Factors & Multiples</li><li>✔️ Fractions</li><li>✔️ Decimals Intro</li><li>✔️ Geometry Basics</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 5</div><ul class="class-topics"><li>✔️ Fractions & Decimals</li><li>✔️ Percentages Intro</li><li>✔️ Area & Perimeter</li><li>✔️ Data Handling</li><li>✔️ Mental Math</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 6</div><ul class="class-topics"><li>✔️ Integers</li><li>✔️ Fractions & Decimals</li><li>✔️ Ratios</li><li>✔️ Basic Algebra</li><li>✔️ Geometry</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 7</div><ul class="class-topics"><li>✔️ Rational Numbers</li><li>✔️ Algebraic Expressions</li><li>✔️ Lines & Angles</li><li>✔️ Triangles</li><li>✔️ Word Problems</li></ul></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="class-card"><div class="class-badge">Class 8</div><ul class="class-topics"><li>✔️ Linear Equations</li><li>✔️ Quadrilaterals</li><li>✔️ Data Handling</li><li>✔️ Exponents</li><li>✔️ Mensuration</li></ul></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt"><div class="container text-center"><h3 class="fw-bold mb-3">Ready to get started?</h3><p class="text-muted mb-4">Book a free demo class and see the difference small-batch learning makes.</p><a class="btn-amr-primary" onclick="showPage('contact')">📅 Book a Free Demo Class</a></div></section>
+</div>
+
+<!-- ═══════════════ TEACHING METHOD ═══════════════ -->
+<div id="page-method" style="display:none">
+  <section class="page-hero"><div class="container"><span class="section-label">Our Pedagogy</span><h1 class="section-title mt-1">How We Teach Math</h1><div class="amr-divider"></div><p class="section-subtitle">A structured, student-friendly approach that builds real understanding — not just exam scores.</p></div></section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-6"><div class="method-card"><div class="d-flex align-items-start gap-4"><div class="card-icon icon-blue flex-shrink-0 mb-0">📋</div><div><h5 class="fw-bold mb-2">Step-by-Step Concept Explanation</h5><p class="text-muted mb-3">Every topic is broken down into small, logical steps. We never skip fundamentals — students understand the "why" behind every rule and formula.</p><div class="d-flex flex-wrap gap-2"><span class="method-tag">✔️ Builds lasting understanding</span><span class="method-tag">✔️ No rote memorisation</span><span class="method-tag">✔️ Foundation-first</span></div></div></div></div></div>
+        <div class="col-12 col-lg-6"><div class="method-card"><div class="d-flex align-items-start gap-4"><div class="card-icon icon-teal flex-shrink-0 mb-0">🖼️</div><div><h5 class="fw-bold mb-2">Visual Examples & Diagrams</h5><p class="text-muted mb-3">Abstract math concepts are made concrete using diagrams, number lines, shapes, and colourful visual aids that help students "see" the math.</p><div class="d-flex flex-wrap gap-2"><span class="method-tag">✔️ Diagrams for geometry</span><span class="method-tag">✔️ Number lines</span><span class="method-tag">✔️ Visual word problems</span></div></div></div></div></div>
+        <div class="col-12 col-lg-6"><div class="method-card"><div class="d-flex align-items-start gap-4"><div class="card-icon icon-indigo flex-shrink-0 mb-0">🧩</div><div><h5 class="fw-bold mb-2">Math Puzzles & Quizzes</h5><p class="text-muted mb-3">Fun quizzes and logic puzzles at the end of each session make learning enjoyable and help assess understanding without the pressure of formal tests.</p><div class="d-flex flex-wrap gap-2"><span class="method-tag">✔️ Weekly mini quizzes</span><span class="method-tag">✔️ Logic brain-teasers</span><span class="method-tag">✔️ Speed math</span></div></div></div></div></div>
+        <div class="col-12 col-lg-6"><div class="method-card"><div class="d-flex align-items-start gap-4"><div class="card-icon icon-sky flex-shrink-0 mb-0">📄</div><div><h5 class="fw-bold mb-2">Practice Worksheets</h5><p class="text-muted mb-3">Structured worksheets aligned with CBSE syllabus are shared after each session. Practice at home reinforces what was taught during the live class.</p><div class="d-flex flex-wrap gap-2"><span class="method-tag">✔️ Topic-wise</span><span class="method-tag">✔️ Graded difficulty</span><span class="method-tag">✔️ CBSE-aligned</span></div></div></div></div></div>
+        <div class="col-12"><div class="method-card"><div class="d-flex align-items-start gap-4"><div class="card-icon icon-green flex-shrink-0 mb-0">🔁</div><div><h5 class="fw-bold mb-2">Revision & Doubt Clearing</h5><p class="text-muted mb-3">Dedicated time in every session is reserved for revising previous topics and resolving student doubts. No question is too small.</p><div class="d-flex flex-wrap gap-2"><span class="method-tag">✔️ Regular revision</span><span class="method-tag">✔️ Open doubt-clearing</span><span class="method-tag">✔️ Exam prep support</span></div></div></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-7"><span class="section-label">Our Philosophy</span><h2 class="section-title mt-1">Math is a subject to enjoy, not fear</h2><div class="amr-divider"></div><p class="text-muted">At AMR Digital Academy, we believe every student has the potential to be good at math. The difference is in the teaching. We focus on curiosity, patience, and progressive challenge — ensuring students feel confident walking into every exam.</p><p class="text-muted">Our small batch size of 5–6 students allows the teacher to observe each student's pace and tailor explanations accordingly. There's no "one-size-fits-all" in our classroom.</p><a class="btn-amr-primary mt-3 d-inline-flex" onclick="showPage('contact')">📅 Book a Free Demo</a></div>
+        <div class="col-12 col-md-5"><div class="philosophy-box"><div class="philosophy-item">❤️<span>Patience-first teaching style</span></div><div class="philosophy-item">💡<span>Curiosity-driven learning</span></div><div class="philosophy-item">🛡️<span>Safe space to ask questions</span></div><div class="philosophy-item">📊<span>Progressive difficulty levels</span></div><div class="philosophy-item">⭐<span>Recognition for effort, not just results</span></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ PROGRESS REPORTS ═══════════════ -->
+<div id="page-progress" style="display:none">
+  <section class="page-hero"><div class="container"><span class="section-label">Parent Updates</span><h1 class="section-title mt-1">Student Progress Reports</h1><div class="amr-divider"></div><p class="section-subtitle">We keep parents fully informed with structured monthly reports — so you always know how your child is progressing.</p></div></section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-blue flex-shrink-0 mb-0">📊</div><div><h5 class="fw-bold mb-2">Monthly Progress Reports</h5><p class="text-muted mb-0">A detailed report shared with parents at the end of every month covering all tracked metrics.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-teal flex-shrink-0 mb-0">📖</div><div><h5 class="fw-bold mb-2">Topic Understanding Analysis</h5><p class="text-muted mb-0">Each topic is rated from Needs Practice to Excellent, giving a clear picture of strengths and gaps.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-green flex-shrink-0 mb-0">☑️</div><div><h5 class="fw-bold mb-2">Homework Completion Tracking</h5><p class="text-muted mb-0">We track worksheet submission and completion rates to encourage consistent practice habits.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-indigo flex-shrink-0 mb-0">📋</div><div><h5 class="fw-bold mb-2">Test Performance Summary</h5><p class="text-muted mb-0">In-class quiz scores and test results are summarised to show improvement over time.</p></div></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Sample Report</span><h2 class="section-title">What a Monthly Report Looks Like</h2><p class="section-subtitle mx-auto mt-2">A sample progress report for a Class 6 student.</p></div>
+      <div class="report-wrapper">
+        <div class="report-header">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
+            <div><h5 class="mb-1 fw-bold text-white">Monthly Progress Report</h5><p class="mb-0 text-white-50" style="font-size:.88rem">Student: [Student Name] &nbsp;|&nbsp; Class 6 &nbsp;|&nbsp; March 2025</p></div>
+            <span class="report-header-badge">AMR Digital Academy</span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table amr-table mb-0">
+            <thead><tr><th>Topic</th><th>Understanding</th><th>Homework</th><th>Test Score</th><th>Trend</th></tr></thead>
+            <tbody>
+              <tr><td class="fw-bold">Addition &amp; Subtraction</td><td><span class="u-badge b-excellent">Excellent</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:100%"></div></div><span class="fw-bold small">100%</span></div></td><td class="fw-bold">18/20</td><td><span class="trend-up">⬆️</span></td></tr>
+              <tr><td class="fw-bold">Fractions – Basic</td><td><span class="u-badge b-good">Good</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:90%"></div></div><span class="fw-bold small">90%</span></div></td><td class="fw-bold">15/20</td><td><span class="trend-up">⬆️</span></td></tr>
+              <tr><td class="fw-bold">Fractions – Unlike</td><td><span class="u-badge b-needs">Needs Practice</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:75%"></div></div><span class="fw-bold small">75%</span></div></td><td class="fw-bold">11/20</td><td><span class="trend-neutral">➖</span></td></tr>
+              <tr><td class="fw-bold">Decimals</td><td><span class="u-badge b-good">Good</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:85%"></div></div><span class="fw-bold small">85%</span></div></td><td class="fw-bold">14/20</td><td><span class="trend-up">⬆️</span></td></tr>
+              <tr><td class="fw-bold">Geometry – Lines &amp; Angles</td><td><span class="u-badge b-excellent">Excellent</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:95%"></div></div><span class="fw-bold small">95%</span></div></td><td class="fw-bold">17/20</td><td><span class="trend-up">⬆️</span></td></tr>
+              <tr><td class="fw-bold">Word Problems</td><td><span class="u-badge b-needs">Needs Practice</span></td><td><div class="d-flex align-items-center gap-2"><div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:70%"></div></div><span class="fw-bold small">70%</span></div></td><td class="fw-bold">10/20</td><td><span class="trend-neutral">➖</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="report-footer"><div class="row g-3"><div class="col-12 col-md-6"><p class="report-note"><strong>Teacher's Comment:</strong> Good overall progress this month. Fractions and Word Problems need more practice. Encourage daily 15-minute revision at home.</p></div><div class="col-12 col-md-6 text-md-end"><p class="report-note">Next test date: <strong>15 April 2025</strong></p><p class="report-note">Next session: <strong>Monday, 7 PM</strong></p></div></div></div>
+      </div>
+      <p class="text-center text-muted small mt-4">* Sample layout. Actual reports are shared via WhatsApp/Email every month.</p>
+    </div>
+  </section>
+  <section class="page-section"><div class="container text-center"><h3 class="fw-bold mb-3">Know your child's progress every month</h3><p class="text-muted mb-4">Book a free demo class to experience our approach first-hand.</p><a class="btn-amr-primary" onclick="showPage('contact')">📅 Book a Free Demo</a></div></section>
+</div>
+
+<!-- ═══════════════ WORKSHEETS ═══════════════ -->
+<div id="page-worksheets" style="display:none">
+  <section class="page-hero"><div class="container"><span class="section-label">Free Resources</span><h1 class="section-title mt-1">Worksheets & Learning Resources</h1><div class="amr-divider"></div><p class="section-subtitle">Download free CBSE-aligned math worksheets for Classes 1–8. Perfect for practice and revision at home.</p></div></section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">🔢</div><div><span class="ws-class-tag">Class 1</span> <span class="ws-level lv-begin ms-1">Beginner</span></div></div><h5 class="fw-bold mb-2">Numbers & Counting Practice</h5><ul class="ws-topics"><li>✅ Counting 1–100</li><li>✅ Before & After</li><li>✅ Skip Counting</li></ul><div class="ws-footer"><span class="ws-pages">📄 4 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">➕</div><div><span class="ws-class-tag">Class 2</span> <span class="ws-level lv-begin ms-1">Beginner</span></div></div><h5 class="fw-bold mb-2">Addition & Subtraction Drills</h5><ul class="ws-topics"><li>✅ 2-Digit Addition</li><li>✅ 2-Digit Subtraction</li><li>✅ Word Problems</li></ul><div class="ws-footer"><span class="ws-pages">📄 5 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">✖️</div><div><span class="ws-class-tag">Class 3</span> <span class="ws-level lv-begin ms-1">Beginner</span></div></div><h5 class="fw-bold mb-2">Multiplication Foundations</h5><ul class="ws-topics"><li>✅ Times Tables 1–10</li><li>✅ Array Models</li><li>✅ Word Problems</li></ul><div class="ws-footer"><span class="ws-pages">📄 6 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">🍕</div><div><span class="ws-class-tag">Class 4</span> <span class="ws-level lv-inter ms-1">Intermediate</span></div></div><h5 class="fw-bold mb-2">Fractions Intro Worksheet</h5><ul class="ws-topics"><li>✅ Half, Quarter, Third</li><li>✅ Fraction on Number Line</li><li>✅ Comparing Fractions</li></ul><div class="ws-footer"><span class="ws-pages">📄 5 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">📐</div><div><span class="ws-class-tag">Class 5</span> <span class="ws-level lv-inter ms-1">Intermediate</span></div></div><h5 class="fw-bold mb-2">Multiplication Practice</h5><ul class="ws-topics"><li>✅ 3-Digit × 2-Digit</li><li>✅ Mental Math Strategies</li><li>✅ Real-life Problems</li></ul><div class="ws-footer"><span class="ws-pages">📄 6 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">📏</div><div><span class="ws-class-tag">Class 6</span> <span class="ws-level lv-inter ms-1">Intermediate</span></div></div><h5 class="fw-bold mb-2">Decimals & Place Value</h5><ul class="ws-topics"><li>✅ Tenths & Hundredths</li><li>✅ Comparing Decimals</li><li>✅ Addition of Decimals</li></ul><div class="ws-footer"><span class="ws-pages">📄 5 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">🔬</div><div><span class="ws-class-tag">Class 7</span> <span class="ws-level lv-adv ms-1">Advanced</span></div></div><h5 class="fw-bold mb-2">Fractions — Advanced Practice</h5><ul class="ws-topics"><li>✅ Unlike Fractions</li><li>✅ Multiply & Divide Fractions</li><li>✅ Mixed Numbers</li></ul><div class="ws-footer"><span class="ws-pages">📄 7 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+        <div class="col-12 col-sm-6 col-lg-4"><div class="ws-card"><div class="d-flex align-items-center gap-3 mb-3"><div class="ws-emoji">📊</div><div><span class="ws-class-tag">Class 8</span> <span class="ws-level lv-adv ms-1">Advanced</span></div></div><h5 class="fw-bold mb-2">Linear Equations Worksheet</h5><ul class="ws-topics"><li>✅ One-variable Equations</li><li>✅ Transposition Method</li><li>✅ Word Problems</li></ul><div class="ws-footer"><span class="ws-pages">📄 6 Pages</span><a class="ws-dl-btn" onclick="showPage('contact')">⬇️ Request via Demo</a></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt"><div class="container"><div class="row align-items-center g-4"><div class="col-12 col-md-8"><h3 class="fw-bold mb-2">Want All Worksheets?</h3><p class="text-muted mb-0">Students enrolled in our batches receive all topic-wise worksheets automatically throughout the course — no separate downloads needed.</p></div><div class="col-12 col-md-4 text-md-end"><a class="btn-amr-primary" onclick="showPage('contact')">📅 Join a Batch</a></div></div></div></section>
+</div>
+
+<!-- ═══════════════ WEB DEVELOPMENT ═══════════════ -->
+<div id="page-webdev" style="display:none">
+  <section class="page-hero" style="background:linear-gradient(135deg,#F0FDFA 0%,#E6F7F5 100%)">
+    <div class="container"><span class="section-label" style="color:var(--teal);background:rgba(13,148,136,.08)">Freelance Service</span><h1 class="section-title mt-1">Web Development Services</h1><div class="amr-divider" style="background:linear-gradient(90deg,var(--teal),var(--primary))"></div><p class="section-subtitle">Professional, responsive websites and web applications built for small businesses and individuals.</p></div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">What We Build</span><h2 class="section-title">Our Web Development Services</h2></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-blue flex-shrink-0 mb-0">🏢</div><div><h5 class="fw-bold mb-2">Business Websites</h5><p class="text-muted mb-0">Clean, professional websites that represent your brand and help you attract customers online.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-teal flex-shrink-0 mb-0">🪪</div><div><h5 class="fw-bold mb-2">Portfolio Websites</h5><p class="text-muted mb-0">Showcase your work beautifully. Perfect for freelancers, designers, and developers.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-indigo flex-shrink-0 mb-0">💻</div><div><h5 class="fw-bold mb-2">Custom Web Applications</h5><p class="text-muted mb-0">Need something specific? We build tailored web apps for your unique business requirements.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-sky flex-shrink-0 mb-0">📣</div><div><h5 class="fw-bold mb-2">Landing Pages</h5><p class="text-muted mb-0">High-converting, focused pages to promote your product or service effectively.</p></div></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Tech Stack</span><h2 class="section-title">Technologies We Use</h2></div>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <div class="tech-badge">⚙️ Angular</div>
+        <div class="tech-badge">⚙️ Python</div>
+        <div class="tech-badge">⚙️ Django</div>
+        <div class="tech-badge">⚙️ HTML5</div>
+        <div class="tech-badge">⚙️ CSS3</div>
+        <div class="tech-badge">⚙️ JavaScript</div>
+        <div class="tech-badge">⚙️ Bootstrap</div>
+        <div class="tech-badge">⚙️ REST APIs</div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Our Process</span><h2 class="section-title">How We Work With You</h2><p class="section-subtitle mx-auto mt-2">A simple, transparent, and collaborative workflow from idea to launch.</p></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="workflow-card"><div class="workflow-num">01</div><div class="card-icon icon-teal mx-auto my-3">💬</div><h5 class="fw-bold mb-2">Requirement Discussion</h5><p class="text-muted small mb-0">We start with a detailed call to understand your goals, audience, and desired features.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="workflow-card"><div class="workflow-num">02</div><div class="card-icon icon-teal mx-auto my-3">🎨</div><h5 class="fw-bold mb-2">Design</h5><p class="text-muted small mb-0">A clean wireframe and visual design is prepared and shared for your review and feedback.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="workflow-card"><div class="workflow-num">03</div><div class="card-icon icon-teal mx-auto my-3">⚙️</div><h5 class="fw-bold mb-2">Development</h5><p class="text-muted small mb-0">Your website is built using modern, clean code following best practices for performance and SEO.</p></div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="workflow-card"><div class="workflow-num">04</div><div class="card-icon icon-teal mx-auto my-3">🚀</div><h5 class="fw-bold mb-2">Testing & Deployment</h5><p class="text-muted small mb-0">Thoroughly tested across devices, then deployed to a live server — ready for your visitors.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="webdev-cta"><div class="container text-center"><h3 class="fw-bold mb-3 text-white">Ready to build your website?</h3><p class="mb-4" style="color:rgba(255,255,255,.8)">Get in touch to discuss your requirements. We'd love to help you establish your online presence.</p><a class="btn fw-bold" style="background:#fff;color:var(--primary);border-radius:50px;padding:12px 28px;box-shadow:0 4px 14px rgba(0,0,0,.2)" onclick="showPage('contact')">💬 Start a Conversation</a></div></section>
+</div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<div id="page-about" style="display:none">
+  <section class="page-hero"><div class="container"><span class="section-label">Our Story</span><h1 class="section-title mt-1">About AMR Digital Academy</h1><div class="amr-divider"></div></div></section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-4 text-center">
+          <div class="founder-avatar"></div>
+          <h4 class="fw-bold mt-3 mb-1">Founder</h4>
+          <p class="text-muted small">AMR Digital Academy</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+            <span class="badge-amr">MSc Applied Mathematics</span>
+            <span class="badge-amr badge-teal">Angular Developer</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-8">
+          <span class="section-label">Founder's Note</span>
+          <h2 class="section-title mt-1">Two Passions, One Mission</h2>
+          <div class="amr-divider"></div>
+          <p class="text-muted">AMR Digital Academy was founded with a simple belief: every child can be good at math with the right guidance and a teacher who genuinely cares.</p>
+          <p class="text-muted">As someone with a postgraduate degree in Applied Mathematics and hands-on experience as an Angular developer, I have always found joy in both teaching and building. Whether it's helping a Class 4 student finally understand fractions, or building a clean, responsive business website — the feeling of creating something useful drives everything I do.</p>
+          <p class="text-muted">I started this academy to offer affordable, high-quality online math tuition in small batches where every student is seen and heard. Large online classes often leave students behind — that's exactly what we fix with our 5–6 student limit.</p>
+          <p class="text-muted mb-0">Alongside the academy, I offer freelance web development services using Angular, Python, Django, and modern front-end tools — helping small businesses and professionals create a strong online presence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section-alt">
+    <div class="container">
+      <div class="text-center mb-5"><span class="section-label">Qualifications & Skills</span><h2 class="section-title">Background & Expertise</h2></div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-blue flex-shrink-0 mb-0">🎓</div><div><h5 class="fw-bold mb-2">MSc in Applied Mathematics</h5><p class="text-muted mb-0">Strong academic foundation in advanced mathematics from postgraduate studies.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-teal flex-shrink-0 mb-0">⚙️</div><div><h5 class="fw-bold mb-2">Angular Developer</h5><p class="text-muted mb-0">Professional experience building modern, scalable web applications using Angular.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-indigo flex-shrink-0 mb-0">🧮</div><div><h5 class="fw-bold mb-2">Math Educator</h5><p class="text-muted mb-0">Passionate about making math accessible and enjoyable for young learners at all levels.</p></div></div></div></div>
+        <div class="col-12 col-sm-6"><div class="amr-card"><div class="d-flex gap-4"><div class="card-icon icon-sky flex-shrink-0 mb-0">💻</div><div><h5 class="fw-bold mb-2">Full-Stack Capability</h5><p class="text-muted mb-0">Experienced with Python, Django, Angular, HTML, CSS — a versatile developer.</p></div></div></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-6">
+          <span class="section-label">What We Stand For</span>
+          <h2 class="section-title mt-1">Our Values</h2>
+          <div class="amr-divider"></div>
+          <ul class="values-list">
+            <li>✅<span>Patience and empathy in teaching</span></li>
+            <li>✅<span>Concept-first, memorisation-last approach</span></li>
+            <li>✅<span>Honest progress tracking for parents</span></li>
+            <li>✅<span>Small batches for real personal attention</span></li>
+            <li>✅<span>Clean, modern web development</span></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="about-cta-box">
+            <h4 class="fw-bold mb-3">Want to know more?</h4>
+            <p class="text-muted mb-4">Book a free demo class and have a conversation with the founder. We'd be happy to answer all your questions before you decide.</p>
+            <a class="btn-amr-primary d-inline-flex" onclick="showPage('contact')">📅 Book a Free Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<div id="page-contact" style="display:none">
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Get in Touch</span>
+      <h1 class="section-title mt-1">Contact &amp; Demo Booking</h1>
+      <div class="amr-divider"></div>
+      <p class="section-subtitle">Fill in the form below — click Send to open your email or WhatsApp with everything pre-filled.</p>
+    </div>
+  </section>
+  <section class="page-section">
+    <div class="container">
+      <div class="row justify-content-center g-5">
+
+        <!-- Info Panel -->
+        <div class="col-12 col-lg-4">
+          <div class="contact-info-box">
+            <h5 class="fw-bold mb-4">Why Book a Demo?</h5>
+            <div class="contact-point"><span class="cicon">✅</span><span>Completely free — no payment needed</span></div>
+            <div class="contact-point"><span class="cicon">🎥</span><span>60-minute live session with the teacher</span></div>
+            <div class="contact-point"><span class="cicon">👁️</span><span>Experience our teaching style first-hand</span></div>
+            <div class="contact-point"><span class="cicon">🤝</span><span>No obligation to join afterwards</span></div>
+            <div class="contact-point"><span class="cicon">💬</span><span>Ask all your questions directly</span></div>
+            <hr class="my-4">
+            <h6 class="fw-bold mb-3">📬 Direct Contact</h6>
+            <div class="contact-detail"><span>📧</span><a href="mailto:amrdigitalacademy00@gmail.com">amrdigitalacademy00@gmail.com</a></div>
+            <div class="contact-detail"><span>🌐</span><span>Online Classes — Nationwide</span></div>
+            <div class="class-info-box mt-4">
+              <h6 class="fw-bold mb-3">ℹ️ Class Info</h6>
+              <div class="class-info-row"><span>Batch Size</span><strong>5–6 Students</strong></div>
+              <div class="class-info-row"><span>Sessions</span><strong>2–3 per week</strong></div>
+              <div class="class-info-row"><span>Duration</span><strong>60 minutes</strong></div>
+              <div class="class-info-row"><span>Format</span><strong>Online Live</strong></div>
+              <div class="class-info-row"><span>Classes</span><strong>1–8 (CBSE)</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="col-12 col-lg-8">
+          <div class="cf-wrapper">
+            <div class="cf-header">
+              <h5 class="fw-bold text-white mb-1">📅 Book a Free Demo / Send Enquiry</h5>
+              <p class="mb-0" style="color:rgba(255,255,255,.78);font-size:.88rem">Fill in the details — clicking Send will open your email or WhatsApp with everything pre-filled.</p>
+            </div>
+            <div class="cf-body">
+              <div id="cForm">
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Parent / Guardian Name <span class="text-danger">*</span></label>
+                    <input type="text" id="cf_parent" class="form-control amr-inp" placeholder="e.g. Priya Sharma">
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Student Name <span class="text-danger">*</span></label>
+                    <input type="text" id="cf_student" class="form-control amr-inp" placeholder="e.g. Arjun Sharma">
+                  </div>
+                </div>
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Phone / WhatsApp <span class="text-danger">*</span></label>
+                    <input type="tel" id="cf_phone" class="form-control amr-inp" placeholder="e.g. 9876543210">
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Your Email Address</label>
+                    <input type="email" id="cf_email" class="form-control amr-inp" placeholder="e.g. parent@gmail.com">
+                  </div>
+                </div>
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Student's Class <span class="text-danger">*</span></label>
+                    <select id="cf_class" class="form-select amr-inp">
+                      <option value="">Select Class</option>
+                      <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+                      <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+                      <option>Class 7</option><option>Class 8</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-semibold">Enquiry Type</label>
+                    <select id="cf_type" class="form-select amr-inp">
+                      <option value="Book a Free Demo Class">📅 Book a Free Demo Class</option>
+                      <option value="Math Tuition Enquiry">➕ Math Tuition Enquiry</option>
+                      <option value="Web Development Enquiry">💻 Web Development Enquiry</option>
+                      <option value="General Question">❓ General Question</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Preferred Time / Message</label>
+                  <textarea id="cf_msg" class="form-control amr-inp" rows="4" placeholder="e.g. Preferred time: evenings after 6 PM. My child needs help with fractions and word problems..."></textarea>
+                </div>
+                <div id="cf_error" class="alert alert-danger py-2 small d-none">⚠️ Please fill in all required fields: Parent Name, Student Name, Phone and Class.</div>
+                <div class="d-flex flex-wrap gap-3 align-items-center mt-4">
+                  <button class="btn-cf-email" onclick="cfSendEmail()">📧 Send via Email</button>
+                  <button class="btn-cf-whatsapp" onclick="cfSendWhatsApp()">💬 Send via WhatsApp</button>
+                </div>
+                <p class="text-muted small mt-3 mb-0">
+                  <strong>📧 Email</strong> opens your mail app pre-filled &nbsp;|&nbsp;
+                  <strong>💬 WhatsApp</strong> opens a pre-filled message ready to send
+                </p>
+              </div>
+              <div id="cf_success" class="text-center py-4 d-none">
+                <div style="font-size:2.8rem;margin-bottom:12px">🎉</div>
+                <h5 class="fw-bold mb-2">Your app is ready to send!</h5>
+                <p class="text-muted mb-2">Your email / WhatsApp has opened with everything pre-filled. Just hit <strong>Send</strong>!</p>
+                <p class="text-muted small">We'll reply within 24 hours. Looking forward to speaking with you.</p>
+                <button class="btn-cf-outline mt-3" onclick="cfReset()">↩ Send Another Enquiry</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row g-4 g-lg-5">
+        <div class="col-12 col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="footer-brand-icon">🧮</div>
+            <span class="footer-brand-name">AMR Digital Academy</span>
+          </div>
+          <p class="footer-desc">Empowering students in Classes 1–8 with confident, concept-based math learning through small-batch online sessions.</p>
+          <div class="mt-3">
+            <div class="footer-contact-item">📧<a href="mailto:amrdigitalacademy00@gmail.com">amrdigitalacademy00@gmail.com</a></div>
+            <div class="footer-contact-item">📍<span>Online Classes — Available Nationwide</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 offset-lg-1">
+          <h6 class="footer-heading">Math Tuition</h6>
+          <ul class="footer-links">
+            <li><a onclick="showPage('math')">Classes 1–8</a></li>
+            <li><a onclick="showPage('method')">Teaching Method</a></li>
+            <li><a onclick="showPage('progress')">Progress Reports</a></li>
+            <li><a onclick="showPage('worksheets')">Worksheets</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <h6 class="footer-heading">Services</h6>
+          <ul class="footer-links">
+            <li><a onclick="showPage('webdev')">Web Development</a></li>
+            <li><a onclick="showPage('about')">About Us</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3">
+          <h6 class="footer-heading">Book a Free Demo</h6>
+          <p class="footer-cta-text">Experience our teaching style — no commitment required.</p>
+          <a class="btn-amr-primary d-inline-flex" style="font-size:.88rem;padding:10px 22px" onclick="showPage('contact')">📅 Book Free Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <p class="mb-0 footer-copy">&copy; 2025 AMR Digital Academy. All rights reserved.</p>
+        <p class="mb-0 footer-copy">Made with ❤️ for Math Learners</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const pages = ['home','math','method','progress','worksheets','webdev','about','contact'];
+const navMap = {home:'nav-home',math:'nav-math',method:'nav-method',worksheets:'nav-worksheets',webdev:'nav-webdev',about:'nav-about',contact:'nav-contact',progress:'nav-home'};
+
+function showPage(page) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-'+p);
+    if(el) el.style.display = (p===page)?'block':'none';
+  });
+  // update nav active
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const activeNav = document.getElementById(navMap[page]||'nav-home');
+  if(activeNav) activeNav.classList.add('active');
+  // collapse mobile menu
+  const menu = document.getElementById('navMenu');
+  if(menu.classList.contains('show')) {
+    bootstrap.Collapse.getInstance(menu)?.hide();
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Scroll effect on navbar
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNavbar').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// Init
+showPage('home');
+
+// ── Contact Form Logic ────────────────────────
+const ACADEMY_EMAIL = 'amrdigitalacademy00@gmail.com';
+const WA_NUMBER     = '919876543210'; // ← Replace with real number e.g. 919876543210
+
+function cfVal(id){ return (document.getElementById(id)||{}).value?.trim()||''; }
+
+function cfValidate(){
+  const ok = cfVal('cf_parent') && cfVal('cf_student') && cfVal('cf_phone') && cfVal('cf_class');
+  document.getElementById('cf_error').classList.toggle('d-none', !!ok);
+  return ok;
+}
+
+function cfBuildBody(){
+  const lines = [
+    'Hello,','',
+    `Enquiry Type : ${cfVal('cf_type')}`,
+    '','--- Student Details ---',
+    `Parent Name  : ${cfVal('cf_parent')}`,
+    `Student Name : ${cfVal('cf_student')}`,
+    `Class        : ${cfVal('cf_class')}`,
+    `Phone        : ${cfVal('cf_phone')}`,
+    `Email        : ${cfVal('cf_email')||'Not provided'}`,
+    '','--- Message ---',
+    cfVal('cf_msg')||'No additional message.',
+    '','Thank you.'
+  ];
+  return lines.join('\n');
+}
+
+function cfSendEmail(){
+  if(!cfValidate()) return;
+  const subject = `[AMR Digital Academy] ${cfVal('cf_type')} – ${cfVal('cf_student')} (${cfVal('cf_class')})`;
+  window.location.href = `mailto:${ACADEMY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(cfBuildBody())}`;
+  cfShowSuccess();
+}
+
+function cfSendWhatsApp(){
+  if(!cfValidate()) return;
+  const text = [
+    'Hello AMR Digital Academy!','',
+    `*Enquiry: ${cfVal('cf_type')}*`,
+    `Parent : ${cfVal('cf_parent')}`,
+    `Student: ${cfVal('cf_student')}`,
+    `Class  : ${cfVal('cf_class')}`,
+    `Phone  : ${cfVal('cf_phone')}`,
+    cfVal('cf_msg') ? `Message: ${cfVal('cf_msg')}` : ''
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
+  cfShowSuccess();
+}
+
+function cfShowSuccess(){
+  document.getElementById('cForm').classList.add('d-none');
+  document.getElementById('cf_success').classList.remove('d-none');
+}
+
+function cfReset(){
+  document.getElementById('cForm').classList.remove('d-none');
+  document.getElementById('cf_success').classList.add('d-none');
+  ['cf_parent','cf_student','cf_phone','cf_email','cf_msg'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  const cls=document.getElementById('cf_class');
+  const typ=document.getElementById('cf_type');
+  if(cls) cls.selectedIndex=0;
+  if(typ) typ.selectedIndex=0;
+}
+</script>
+</body>
+</html>

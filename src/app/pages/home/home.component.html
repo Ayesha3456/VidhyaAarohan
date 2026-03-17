@@ -1,0 +1,158 @@
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-12 col-lg-6">
+        <span class="section-label">CBSE Classes 1–8 · Online</span>
+        <h1 class="hero-title">
+          Build a Strong<br>
+          <span class="hero-highlight">Math Foundation</span><br>
+          from Home
+        </h1>
+        <p class="hero-desc">
+          AMR Digital Academy offers live online math tuition for CBSE students in Classes 1–8.
+          Small batches of just 5–6 students ensure every child gets the attention they deserve.
+        </p>
+        <div class="hero-stats d-flex flex-wrap gap-3 my-4">
+          <div class="hero-stat">
+            <span class="stat-number">5–6</span>
+            <span class="stat-label">Students per Batch</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Classes Covered</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">3×</span>
+            <span class="stat-label">Sessions per Week</span>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a routerLink="/contact" class="btn-primary-amr">
+            <i class="bi bi-calendar-check"></i> Book a Free Demo
+          </a>
+          <a routerLink="/web-development" class="btn-outline-amr">
+            <i class="bi bi-code-slash"></i> Web Dev Services
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="hero-visual">
+          <div class="hero-card hero-card-main">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="amr-card-icon icon-blue">
+                <i class="bi bi-calculator-fill"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-700">Live Math Session</h6>
+                <small class="text-muted">Class 6 — Fractions</small>
+              </div>
+            </div>
+            <div class="session-bar mb-2">
+              <span class="session-topic">Topic: Adding Unlike Fractions</span>
+            </div>
+            <div class="d-flex gap-2 flex-wrap mt-3">
+              <span class="badge-amr">📐 Visual Examples</span>
+              <span class="badge-amr badge-teal">🧩 Math Puzzles</span>
+              <span class="badge-amr">📝 Worksheets</span>
+            </div>
+          </div>
+          <div class="hero-card hero-card-side">
+            <div class="side-card-row"><i class="bi bi-check-circle-fill text-success me-2"></i> Concept Clarity</div>
+            <div class="side-card-row"><i class="bi bi-check-circle-fill text-success me-2"></i> Homework Help</div>
+            <div class="side-card-row"><i class="bi bi-check-circle-fill text-success me-2"></i> Monthly Reports</div>
+          </div>
+          <div class="hero-decoration dec-1"></div>
+          <div class="hero-decoration dec-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLASSES RIBBON ===== -->
+<section class="classes-ribbon">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
+      <span class="ribbon-label">Classes Covered:</span>
+      @for (cls of classes; track cls) {
+        <a routerLink="/math-tuition" class="class-chip">Class {{ cls }}</a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="page-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Everything your child needs<br>to excel in Math</h2>
+      <p class="section-subtitle mx-auto mt-2">
+        Our approach combines strong foundations, regular practice, and personalised attention.
+      </p>
+    </div>
+    <div class="row g-4">
+      @for (b of benefits; track b.title) {
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="amr-card">
+            <div class="amr-card-icon {{ b.iconClass }}">
+              <i class="bi {{ b.icon }}"></i>
+            </div>
+            <h5 class="fw-700 mb-2">{{ b.title }}</h5>
+            <p class="mb-0 text-muted small">{{ b.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="page-section-alt">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Getting Started</span>
+      <h2 class="section-title">How to Join AMR Digital Academy</h2>
+      <p class="section-subtitle mx-auto mt-2">Four simple steps to begin your child's learning journey.</p>
+    </div>
+    <div class="row g-4">
+      @for (step of steps; track step.num) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="step-card">
+            <span class="step-number">{{ step.num }}</span>
+            <h5 class="fw-700 mb-2 mt-3">{{ step.title }}</h5>
+            <p class="mb-0 text-muted small">{{ step.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="text-center mt-5">
+      <a routerLink="/contact" class="btn-primary-amr">
+        <i class="bi bi-calendar-check"></i> Book a Free Demo Class
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECONDARY: WEB DEV ===== -->
+<section class="page-section">
+  <div class="container">
+    <div class="web-dev-banner">
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-md-8">
+          <span class="section-label">Secondary Service</span>
+          <h3 class="fw-700 mb-2">Professional Web Development Services</h3>
+          <p class="text-muted mb-0">
+            Looking for a clean, responsive business website? We also build business sites, portfolio pages, landing pages, and custom web applications using Angular, Django, and more.
+          </p>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <a routerLink="/web-development" class="btn-teal-amr">
+            <i class="bi bi-code-slash"></i> Explore Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

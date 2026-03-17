@@ -1,0 +1,203 @@
+<!-- Hero (no print) -->
+<section class="page-hero no-print">
+  <div class="container">
+    <span class="section-label">Interactive Learning</span>
+    <h1 class="section-title mt-1">Worksheets &amp; Practice</h1>
+    <div class="amr-divider"></div>
+    <p class="section-subtitle">
+      CBSE-aligned interactive worksheets. Answer online and get instant feedback — or download as PDF.
+    </p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+
+    <!-- Worksheet selector (no print) -->
+    <div class="no-print mb-5">
+      <div class="ws-selector-label mb-3">Choose a Worksheet:</div>
+      <div class="row g-3">
+        @for (ws of worksheets; track ws.id) {
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="ws-selector-card"
+                 [class.active]="selectedWorksheet.id === ws.id"
+                 (click)="selectWorksheet(ws)">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="ws-class-tag">{{ ws.studentClass }}</span>
+                <span class="ws-diff {{ getDifficultyClass(ws.difficulty) }}">{{ ws.difficulty }}</span>
+              </div>
+              <div class="ws-selector-topic">{{ ws.topic }}</div>
+              <div class="ws-selector-meta">{{ ws.totalMarks }} questions &middot; {{ ws.timeMinutes }} min</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Worksheet card -->
+    <div class="worksheet-card" id="worksheetCard">
+
+      <!-- Worksheet header -->
+      <div class="ws-header">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+          <div>
+            <div class="ws-academy">AMR Digital Academy — Worksheet</div>
+            <div class="ws-header-sub">
+              {{ selectedWorksheet.studentClass }} &middot; Topic: {{ selectedWorksheet.topic }} &middot; CBSE Aligned
+            </div>
+          </div>
+          <div class="ws-header-badge">{{ selectedWorksheet.totalMarks }} Questions</div>
+        </div>
+      </div>
+
+      <!-- Student info row -->
+      <div class="ws-student-row">
+        <div class="ws-student-field">
+          <label>Student Name:</label>
+          <input type="text" [(ngModel)]="studentName"
+                 class="ws-text-input no-print" placeholder="Enter your name">
+          <span class="print-only ws-print-line">___________________________</span>
+        </div>
+        <div class="ws-student-field">
+          <label>Date:</label>
+          <input type="date" [(ngModel)]="studentDate"
+                 class="ws-text-input no-print">
+          <span class="print-only ws-print-line">_______________</span>
+        </div>
+        <div class="ws-student-field">
+          <label>Score:</label>
+          <span class="ws-score-display" *ngIf="submitted">{{ score }} / {{ selectedWorksheet.totalMarks }}</span>
+          <span class="ws-score-display ws-score-empty" *ngIf="!submitted">— / {{ selectedWorksheet.totalMarks }}</span>
+        </div>
+        <div class="ws-student-field">
+          <label>Time allowed:</label>
+          <span class="ws-score-display">{{ selectedWorksheet.timeMinutes }} minutes</span>
+        </div>
+      </div>
+
+      <!-- Score bar (shown after submit) -->
+      <div class="ws-score-bar no-print" *ngIf="submitted">
+        <span class="ws-bar-label">Your score</span>
+        <div class="ws-bar-track">
+          <div class="ws-bar-fill"
+               [style.width.%]="getScorePercent()"
+               [class.bar-pass]="getScorePercent() >= 80"
+               [class.bar-avg]="getScorePercent() >= 50 && getScorePercent() < 80"
+               [class.bar-fail]="getScorePercent() < 50">
+          </div>
+        </div>
+        <span class="ws-bar-pct">{{ getScorePercent() }}%</span>
+      </div>
+
+      <!-- Sections and questions -->
+      <div class="ws-body">
+        @for (section of selectedWorksheet.sections; track section.title) {
+          <div class="ws-section">
+            <div class="ws-section-title">{{ section.title }}</div>
+
+            @for (q of section.questions; track q.id) {
+              <div class="q-row" [class.q-correct]="q.status === 'correct'" [class.q-wrong]="q.status === 'wrong'">
+                <div class="q-num">{{ q.id }}</div>
+                <div class="q-content">
+                  <div class="q-text">{{ q.text }}</div>
+
+                  <!-- Input type -->
+                  @if (q.type === 'input') {
+                    <div class="q-answer-row">
+                      <input type="text"
+                             [(ngModel)]="q.userAnswer"
+                             class="q-input no-print"
+                             [class.inp-correct]="q.status === 'correct'"
+                             [class.inp-wrong]="q.status === 'wrong'"
+                             [disabled]="submitted"
+                             placeholder="Your answer">
+                      <span class="print-only q-print-blank">___________</span>
+                      @if (q.status === 'correct') {
+                        <span class="q-feedback q-ok">✅ Correct!</span>
+                      }
+                      @if (q.status === 'wrong') {
+                        <span class="q-feedback q-err">❌ Answer: {{ q.answer }}</span>
+                      }
+                    </div>
+                  }
+
+                  <!-- Select type -->
+                  @if (q.type === 'select') {
+                    <div class="q-answer-row flex-wrap gap-2">
+                      @for (opt of q.options; track opt) {
+                        <button class="q-option no-print"
+                                [class.opt-selected]="q.userAnswer === opt && q.status !== 'correct' && q.status !== 'wrong'"
+                                [class.opt-correct]="q.userAnswer === opt && q.status === 'correct'"
+                                [class.opt-wrong]="q.userAnswer === opt && q.status === 'wrong'"
+                                [class.opt-reveal]="submitted && opt === q.answer && q.status === 'wrong'"
+                                [disabled]="submitted"
+                                (click)="q.userAnswer = opt">
+                          {{ opt }}
+                        </button>
+                      }
+                      <!-- Print: show options inline -->
+                      <span class="print-only q-print-options">
+                        @for (opt of q.options; track opt) { ({{ opt }}) }
+                      </span>
+                      @if (q.status === 'correct') { <span class="q-feedback q-ok">✅ Correct!</span> }
+                      @if (q.status === 'wrong')   { <span class="q-feedback q-err">❌ Answer: {{ q.answer }}</span> }
+                    </div>
+                  }
+
+                  <!-- True / False -->
+                  @if (q.type === 'truefalse') {
+                    <div class="q-answer-row gap-2">
+                      <button class="q-option no-print"
+                              [class.opt-selected]="q.userAnswer === 'True' && !submitted"
+                              [class.opt-correct]="q.userAnswer === 'True' && q.status === 'correct'"
+                              [class.opt-wrong]="q.userAnswer === 'True' && q.status === 'wrong'"
+                              [class.opt-reveal]="submitted && q.answer === 'True' && q.status === 'wrong'"
+                              [disabled]="submitted"
+                              (click)="q.userAnswer = 'True'">True</button>
+                      <button class="q-option no-print"
+                              [class.opt-selected]="q.userAnswer === 'False' && !submitted"
+                              [class.opt-correct]="q.userAnswer === 'False' && q.status === 'correct'"
+                              [class.opt-wrong]="q.userAnswer === 'False' && q.status === 'wrong'"
+                              [class.opt-reveal]="submitted && q.answer === 'False' && q.status === 'wrong'"
+                              [disabled]="submitted"
+                              (click)="q.userAnswer = 'False'">False</button>
+                      <span class="print-only q-print-options">(True) &nbsp; (False)</span>
+                      @if (q.status === 'correct') { <span class="q-feedback q-ok">✅ Correct!</span> }
+                      @if (q.status === 'wrong')   { <span class="q-feedback q-err">❌ Answer: {{ q.answer }}</span> }
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Result message -->
+      <div class="ws-result {{ getResultClass() }} no-print" *ngIf="submitted">
+        {{ getResultMessage() }}
+      </div>
+
+      <!-- Action buttons -->
+      <div class="ws-actions no-print">
+        <button class="btn-check" (click)="checkAnswers()" *ngIf="!submitted">
+          ✅ Check Answers
+        </button>
+        <button class="btn-reset" (click)="resetWorksheet()">
+          🔁 Reset Worksheet
+        </button>
+        <button class="btn-pdf" (click)="downloadPDF()">
+          ⬇️ Download as PDF
+        </button>
+      </div>
+
+      <!-- Worksheet footer -->
+      <div class="ws-footer">
+        <span>AMR Digital Academy &middot; amrdigitalacademy00&#64;gmail.com</span>
+        <span class="fst-italic">"Learn with clarity. Grow with confidence."</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>

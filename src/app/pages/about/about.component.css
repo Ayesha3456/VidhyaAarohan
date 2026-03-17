@@ -1,0 +1,34 @@
+.founder-avatar {
+  width: 120px; height: 120px;
+  background: linear-gradient(135deg, var(--bg-light), #DBEAFE);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  color: var(--primary);
+  margin: 0 auto;
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+.values-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.values-list li {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+.values-list li:last-child { border-bottom: none; }
+.values-list li i {
+  color: var(--teal);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.about-cta-box {
+  background: linear-gradient(135deg, var(--bg-light), #EFF6FF);
+  border: 1px solid rgba(37,99,235,0.14);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
