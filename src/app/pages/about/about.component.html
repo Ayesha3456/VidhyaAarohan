@@ -1,101 +1,55 @@
+<!-- ===== HERO ===== -->
 <section class="page-hero">
   <div class="container">
-    <span class="section-label">Our Story</span>
+    <span class="section-label">About</span>
     <h1 class="section-title mt-1">About AMR Digital Academy</h1>
     <div class="amr-divider"></div>
   </div>
 </section>
 
-<!-- Founder section -->
+
+<!-- ===== FOUNDER ===== -->
 <section class="page-section">
   <div class="container">
     <div class="row align-items-center g-5">
+
+      <!-- LEFT -->
       <div class="col-12 col-md-4 text-center">
         <div class="founder-avatar">
           <i class="bi bi-person-fill"></i>
         </div>
-        <h4 class="fw-700 mt-3 mb-1">Founder</h4>
-        <p class="text-muted small">AMR Digital Academy</p>
+
+        <h4 class="fw-700 mt-3 mb-1">Ayesha M</h4>
+        <p class="text-muted small">MSc Applied Mathematics · Math Tutor</p>
+
         <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
-          <span class="badge-amr">MSc Applied Mathematics</span>
-          <span class="badge-amr badge-teal">Angular Developer</span>
+          <span class="badge-amr">Classes 1–10</span>
+          <span class="badge-amr badge-teal">Small Batches</span>
         </div>
       </div>
+
+      <!-- RIGHT -->
       <div class="col-12 col-md-8">
-        <span class="section-label">Founder's Note</span>
-        <h2 class="section-title mt-1">Two Passions, One Mission</h2>
+        <span class="section-label">Founder’s Note</span>
+        <h2 class="section-title mt-1">Focused Teaching. Real Results.</h2>
         <div class="amr-divider"></div>
+
         <p class="text-muted">
-          AMR Digital Academy was founded with a simple belief: every child can be good at math with the right guidance and a teacher who genuinely cares.
+          I started AMR Digital Academy with a simple goal — to make math easier and more understandable for students from Classes 1 to 10.
         </p>
+
         <p class="text-muted">
-          As someone with a postgraduate degree in Applied Mathematics and hands-on experience as an Angular developer, I have always found joy in both teaching and building. Whether it's helping a Class 4 student finally understand fractions, or building a clean, responsive business website — the feeling of creating something useful drives everything I do.
+          With a postgraduate degree in Applied Mathematics, I focus on building strong concepts instead of rote learning. Every class is designed to help students actually understand what they are learning.
         </p>
+
         <p class="text-muted">
-          I started this academy to offer affordable, high-quality online math tuition in small batches where every student is seen and heard. Large online classes often leave students behind — that's exactly what we fix with our 5–6 student limit.
+          Classes are conducted in small batches (5–6 students) so that every child gets personal attention, can ask questions freely, and improve with confidence.
         </p>
+
         <p class="text-muted mb-0">
-          Alongside the academy, I offer freelance web development services using Angular, Python, Django, and modern front-end tools — helping small businesses and professionals create a strong online presence.
+          I also work on web development projects for businesses, but my primary focus is helping students improve in mathematics through structured teaching.
         </p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Highlights -->
-<section class="page-section-alt">
-  <div class="container">
-    <div class="text-center mb-5">
-      <span class="section-label">Qualifications & Skills</span>
-      <h2 class="section-title">Background & Expertise</h2>
-    </div>
-    <div class="row g-4">
-      @for (h of highlights; track h.title) {
-        <div class="col-12 col-sm-6">
-          <div class="amr-card">
-            <div class="d-flex gap-4">
-              <div class="amr-card-icon {{ h.iconClass }} flex-shrink-0">
-                <i class="bi {{ h.icon }}"></i>
-              </div>
-              <div>
-                <h5 class="fw-700 mb-2">{{ h.title }}</h5>
-                <p class="text-muted mb-0">{{ h.desc }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
-<!-- Values -->
-<section class="page-section">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-12 col-md-6">
-        <span class="section-label">What We Stand For</span>
-        <h2 class="section-title mt-1">Our Values</h2>
-        <div class="amr-divider"></div>
-        <ul class="values-list">
-          @for (v of values; track v) {
-            <li>
-              <i class="bi bi-check-circle-fill"></i>
-              <span>{{ v }}</span>
-            </li>
-          }
-        </ul>
-      </div>
-      <div class="col-12 col-md-6">
-        <div class="about-cta-box">
-          <h4 class="fw-700 mb-3">Want to know more?</h4>
-          <p class="text-muted mb-4">
-            Book a free demo class and have a conversation with the founder. We'd be happy to answer all your questions before you decide.
-          </p>
-          <a routerLink="/contact" class="btn-primary-amr d-inline-flex">
-            <i class="bi bi-calendar-check"></i> Book a Free Demo
-          </a>
-        </div>
       </div>
     </div>
   </div>
