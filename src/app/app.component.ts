@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -27,7 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
     .main-content {
       flex: 1;
-      padding-top: 80px; /* safer spacing */
+      padding-top: 80px;
     }
 
     @media (max-width: 991px) {
@@ -37,4 +38,13 @@ import { FooterComponent } from './components/footer/footer.component';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private router: Router) {
+    // Scroll to top on every route change
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+  }
+}
