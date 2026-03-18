@@ -1,39 +1,130 @@
+/* HERO */
+.hero-section {
+  padding: 80px 0 40px;
+  background: linear-gradient(to bottom, #f8fbff, #ffffff);
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+.hero-desc {
+  margin-top: 15px;
+  color: #555;
+}
+
+/* TECH BADGES */
 .tech-badge {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 50px;
-  padding: 10px 22px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--text-dark);
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
+/* HERO RIGHT */
+.hero-visual {
+  position: relative;
+}
+
+.hero-card-main {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-card-main h5 {
+  margin-bottom: 15px;
+}
+
+.feature-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.feature-row:last-child {
+  border-bottom: none;
+}
+
+.hero-card-side {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+}
+
+/* BUTTON */
+.btn-primary-amr {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* SERVICES */
+.page-section {
+  padding: 70px 0;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+/* WORKFLOW */
 .workflow-card {
   background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2rem 1.5rem;
-  height: 100%;
+  padding: 25px;
+  border-radius: 16px;
   position: relative;
-  transition: all 0.25s;
-}
-
-.workflow-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
 }
 
 .workflow-num {
   position: absolute;
   top: 10px;
-  right: 14px;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--teal);
-  opacity: 0.15;
+  right: 15px;
+  font-size: 1.5rem;
+  opacity: 0.2;
 }
 
-.webdev-cta-section {
+/* CTA */
+.cta-section {
   padding: 70px 0;
-  background: linear-gradient(135deg, var(--teal), var(--primary));
+  background: linear-gradient(135deg, var(--primary), var(--teal));
+}
+
+.btn-light-amr {
+  background: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
 }
