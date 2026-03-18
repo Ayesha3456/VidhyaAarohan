@@ -40,11 +40,10 @@ import { FooterComponent } from './components/footer/footer.component';
 })
 export class AppComponent {
   constructor(private router: Router) {
-    // Scroll to top on every route change
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
+    this.router.events.subscribe((event: Event | any) => {
+      if (event instanceof NavigationEnd) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+      }
+    });
   }
 }

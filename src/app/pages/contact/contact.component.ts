@@ -9,6 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  // Backup Google Form URL for direct open in new tab
+  // Optional: Backup link
   formUrl = 'https://forms.gle/gBgYmbwZRfvia9Y96';
 }
