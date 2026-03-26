@@ -1,4 +1,4 @@
-# AMR Digital Academy
+# VidhyaAarohanDigital Academy
 
 **Online Math Tuition (CBSE Classes 1–8) & Web Development Services**
 
@@ -94,4 +94,4 @@ A direct link button is also shown as a fallback.
 
 ---
 
-© 2025 AMR Digital Academy
+© 2025 VidhyaAarohan
