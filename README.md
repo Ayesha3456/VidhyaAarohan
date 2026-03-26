@@ -1,6 +1,6 @@
 # VidhyaAarohanDigital Academy
 
-**Online Math Tuition (CBSE Classes 1–8) & Web Development Services**
+**Online Math Tuition (CBSE Classes 1–10) & Web Development Services**
 
 ---
 
