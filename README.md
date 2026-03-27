@@ -1,4 +1,4 @@
-# VidhyaAarohan Digital Academy
+# VidhyaAarohan
 
 **CBSE Math Tuition (Classes 1–10)**
 Helping students improve marks, confidence, and core understanding.
