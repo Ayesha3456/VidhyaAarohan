@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  formUrl = 'https://forms.gle/gBgYmbwZRfvia9Y96';
+  formUrl = 'https://forms.gle/AAT4rG2JShLfkeCi8';
 }
