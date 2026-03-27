@@ -1,32 +1,35 @@
 <nav class="navbar navbar-expand-lg fixed-top" [class.scrolled]="isScrolled">
   <div class="container">
-    <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" routerLink="/">
-      <img src="assets/logo.png" alt="VidhyaAarohan" class="brand-icon" />
-      <div>
+
+    <!-- BRAND -->
+    <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" routerLink="/">
+      <img src="assets/logo.png" alt="VidhyaAarohan Logo" class="brand-icon" />
+
+      <div class="brand-text">
         <span class="brand-name">VidhyaAarohan</span>
-        <span class="brand-sub d-block">CBSE Math Tuition (Classes 1–10)</span>
+        <span class="brand-sub d-block">CBSE Tuition (Classes 1–10)</span>
       </div>
     </a>
 
-    <!-- Toggler -->
+    <!-- TOGGLER -->
     <button class="navbar-toggler" type="button" (click)="toggleMenu()">
       <span class="toggler-icon">☰</span>
     </button>
 
-    <!-- Nav Links -->
-    <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="mainNav">
+    <!-- NAV -->
+    <div class="collapse navbar-collapse" [class.show]="isMenuOpen">
+
       <ul class="navbar-nav mx-auto text-center">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            (click)="closeMenu()">
+          <a class="nav-link" routerLink="/" routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
             Home
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/math-tuition" routerLinkActive="active" (click)="closeMenu()">
-            Math Tuition
+            Tuition
           </a>
         </li>
 
@@ -45,15 +48,16 @@
 
       <!-- CTA -->
       <div class="text-center mt-3 mt-lg-0">
-        <a class="btn btn-warning nav-cta" href="https://wa.me/8500764713" target="_blank">
+        <a class="btn nav-cta" href="https://wa.me/8500764713" target="_blank">
           📱 Book Demo
         </a>
       </div>
+
     </div>
   </div>
 </nav>
 
-<!-- Floating WhatsApp (ICON ONLY) -->
+<!-- Floating WhatsApp -->
 <a href="https://wa.me/8500764713" class="whatsapp-float" target="_blank">
   <i class="bi bi-whatsapp"></i>
 </a>
