@@ -1,6 +1,6 @@
 # VidhyaAarohanDigital Academy
 
-**Online Math Tuition (CBSE Classes 1–8) & Web Development Services**
+**Online Math Tuition (CBSE Classes 1–10) & Web Development Services**
 
 ---
 
@@ -48,10 +48,7 @@ src/app/
 │   └── footer/          — Site footer with links
 ├── pages/
 │   ├── home/            — Landing page with hero, benefits, steps
-│   ├── math-tuition/    — Classes 1–8 syllabus & format
-│   ├── teaching-method/ — Pedagogy & philosophy
-│   ├── progress-reports/— Monthly report system + sample table
-│   ├── worksheets/      — Downloadable resource cards
+│   ├── math-tuition/    — Classes 1–10 resource cards
 │   ├── web-development/ — Freelance services & tech stack
 │   ├── about/           — Founder info & values
 │   └── contact/         — Google Form embed + info panel
@@ -94,4 +91,4 @@ A direct link button is also shown as a fallback.
 
 ---
 
-© 2025 VidhyaAarohan
+© 2026 VidhyaAarohan
