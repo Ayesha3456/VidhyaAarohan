@@ -1,40 +1,94 @@
-# VidhyaAarohanDigital Academy
+# VidhyaAarohan Digital Academy
 
-**Online Math Tuition (CBSE Classes 1–10) & Web Development Services**
-
----
-
-## 🚀 Quick Start — Preview (No Setup Required)
-
-Simply open `preview.html` in any browser.  
-All 8 pages work instantly with full navigation — no installation needed.
+**CBSE Math Tuition (Classes 1–10)**
+Helping students improve marks, confidence, and core understanding.
 
 ---
 
-## 🅰️ Angular Project Setup
+## 🚀 Live Website
+
+👉 https://ayesha3456.github.io/VidhyaAarohan/
+
+---
+
+## 🎯 Core Offering
+
+* 📘 Concept-focused math teaching
+* 📈 Improved academic performance
+* 🧠 Strong fundamentals for higher classes
+* 🎯 Personalized attention
+
+---
+
+## ➕ Additional Service
+
+Along with tuition, we also offer:
+
+**Web Development Services**
+
+* Portfolio websites
+* Business landing pages
+* UI-focused frontend development
+
+---
+
+## ⚡ Quick Preview (No Setup Required)
+
+Open `preview.html` in your browser.
+
+* No installation needed
+* Full navigation included
+* Ideal for quick demos
+
+---
+
+## 🅰️ Angular Setup
 
 ### Prerequisites
-- Node.js 18+ → https://nodejs.org
-- Angular CLI → `npm install -g @angular/cli`
 
-### Install & Run
+* Node.js (v18 or higher)
+* Angular CLI
 
 ```bash
-# 1. Install dependencies
-npm install
-
-# 2. Start development server
-ng serve
-
-# 3. Open in browser
-# http://localhost:4200
+npm install -g @angular/cli
 ```
 
-### Build for Production
+---
+
+### ▶️ Run Locally
 
 ```bash
-ng build
-# Output: dist/amr-digital-academy/
+npm install
+ng serve
+```
+
+Open:
+
+```
+http://localhost:4200
+```
+
+---
+
+### 📦 Production Build
+
+```bash
+ng build --configuration production
+```
+
+Output:
+
+```
+dist/amr-digital-academy/browser/
+```
+
+---
+
+### 🚀 Deploy to GitHub Pages
+
+```bash
+ng build --configuration production --base-href "https://ayesha3456.github.io/VidhyaAarohan/"
+npx angular-cli-ghpages --dir=dist/amr-digital-academy/browser
 ```
 
 ---
@@ -44,50 +98,58 @@ ng build
 ```
 src/app/
 ├── components/
-│   ├── navbar/          — Fixed responsive navigation bar
-│   └── footer/          — Site footer with links
+│   ├── navbar/          
+│   └── footer/          
 ├── pages/
-│   ├── home/            — Landing page with hero, benefits, steps
-│   ├── math-tuition/    — Classes 1–10 resource cards
-│   ├── web-development/ — Freelance services & tech stack
-│   ├── about/           — Founder info & values
-│   └── contact/         — Google Form embed + info panel
-├── app.routes.ts        — Angular routing config
-├── app.component.ts     — Root component
-└── app.config.ts        — Bootstrap config with HashLocation
+│   ├── home/            
+│   ├── math-tuition/    
+│   ├── web-development/ 
+│   ├── about/           
+│   └── contact/         
+├── app.routes.ts
+├── app.component.ts
+└── app.config.ts
 ```
 
 ---
 
 ## 🎨 Design System
 
-| Token            | Value          |
-|------------------|----------------|
-| Primary Blue     | `#2563EB`      |
-| Teal             | `#0D9488`      |
-| Background Light | `#F0F7FF`      |
-| Text Dark        | `#1E293B`      |
-| Font Heading     | Playfair Display |
-| Font Body        | Nunito         |
+* Primary Blue: `#2563EB`
+* Teal: `#0D9488`
+* Background: `#F0F7FF`
+* Text: `#1E293B`
+* Fonts:
+
+  * Headings → Playfair Display
+  * Body → Nunito
 
 ---
 
-## 📞 Contact Form
+## 📞 Contact
 
-The Contact page embeds:  
-**https://forms.gle/fZ6zsdYzGoE5DLWT6**
+📧 [vidhyaaarohan@gmail.com](mailto:vidhyaaarohan@gmail.com)
+📱 +91 85007 64713
 
-A direct link button is also shown as a fallback.
+Google Form:
+https://forms.gle/fZ6zsdYzGoE5DLWT6
 
 ---
 
-## 🛠️ Technologies
+## 🛠️ Tech Stack
 
-- **Angular 17** (standalone components, signals-ready)
-- **Bootstrap 5.3** (grid, utilities, responsive)
-- **Bootstrap Icons 1.11**
-- **TypeScript 5.2**
-- **Google Fonts** — Playfair Display + Nunito
+* Angular 17
+* Bootstrap 5.3
+* Bootstrap Icons
+* TypeScript
+
+---
+
+## ⚠️ Notes
+
+* Uses hash routing (`/#/`) for GitHub Pages
+* Static hosting (no backend required)
+* Ensure correct base-href during deployment
 
 ---
 
